@@ -14,7 +14,7 @@ const MedicalCrossLogo = () => (
       >
         <defs>
           <linearGradient
-            id="medicalGradient"
+            id="swastikGradient"
             x1="0%"
             y1="0%"
             x2="100%"
@@ -22,21 +22,81 @@ const MedicalCrossLogo = () => (
           >
             <stop
               offset="0%"
+              style={{ stopColor: "#00704A", stopOpacity: 1 }}
+            />
+            <stop
+              offset="50%"
               style={{ stopColor: "#4F9A68", stopOpacity: 1 }}
             />
             <stop
               offset="100%"
-              style={{ stopColor: "#00704A", stopOpacity: 1 }}
+              style={{ stopColor: "#86C49B", stopOpacity: 1 }}
             />
           </linearGradient>
         </defs>
+
+        {/* Main interlocking cross design */}
         <path
-          d="M20 35 L35 35 L35 20 Q35 15 40 15 L60 15 Q65 15 65 20 L65 35 L80 35 Q85 35 85 40 L85 60 Q85 65 80 65 L65 65 L65 80 Q65 85 60 85 L40 85 Q35 85 35 80 L35 65 L20 65 Q15 65 15 60 L15 40 Q15 35 20 35 Z"
-          fill="url(#medicalGradient)"
+          d="M8 35 L35 35 L35 8 Q35 5 38 5 L62 5 Q65 5 65 8 L65 35 L92 35 Q95 35 95 38 L95 62 Q95 65 92 65 L65 65 L65 92 Q65 95 62 95 L38 95 Q35 95 35 92 L35 65 L8 65 Q5 65 5 62 L5 38 Q5 35 8 35 Z"
+          fill="url(#swastikGradient)"
         />
+
+        {/* Inner cross cutouts creating the interlocking effect */}
         <path
-          d="M25 40 L40 40 L40 25 Q40 22 42.5 22 L57.5 22 Q60 22 60 25 L60 40 L75 40 Q78 40 78 42.5 L78 57.5 Q78 60 75 60 L60 60 L60 75 Q60 78 57.5 78 L42.5 78 Q40 78 40 75 L40 60 L25 60 Q22 60 22 57.5 L22 42.5 Q22 40 25 40 Z"
-          fill="#86C49B"
+          d="M20 25 L25 25 L25 20 Q25 18 27 18 L40 18 L40 32 L27 32 Q25 32 25 30 L25 25 L20 25 Q18 25 18 23 L18 20 Q18 18 20 18 L20 25 Z"
+          fill="white"
+        />
+
+        <path
+          d="M75 25 L80 25 Q82 25 82 23 L82 20 Q82 18 80 18 L75 18 L75 20 Q75 18 73 18 L60 18 L60 32 L73 32 Q75 32 75 30 L75 25 Z"
+          fill="white"
+        />
+
+        <path
+          d="M20 75 L25 75 L25 80 Q25 82 27 82 L40 82 L40 68 L27 68 Q25 68 25 70 L25 75 L20 75 Q18 75 18 77 L18 80 Q18 82 20 82 L20 75 Z"
+          fill="white"
+        />
+
+        <path
+          d="M75 75 L80 75 Q82 75 82 77 L82 80 Q82 82 80 82 L75 82 L75 80 Q75 82 73 82 L60 82 L60 68 L73 68 Q75 68 75 70 L75 75 Z"
+          fill="white"
+        />
+
+        {/* Central cross intersection */}
+        <rect x="40" y="40" width="20" height="20" fill="white" rx="2" />
+
+        {/* Connecting elements */}
+        <rect
+          x="32"
+          y="45"
+          width="16"
+          height="10"
+          fill="url(#swastikGradient)"
+          rx="2"
+        />
+        <rect
+          x="52"
+          y="45"
+          width="16"
+          height="10"
+          fill="url(#swastikGradient)"
+          rx="2"
+        />
+        <rect
+          x="45"
+          y="32"
+          width="10"
+          height="16"
+          fill="url(#swastikGradient)"
+          rx="2"
+        />
+        <rect
+          x="45"
+          y="52"
+          width="10"
+          height="16"
+          fill="url(#swastikGradient)"
+          rx="2"
         />
       </svg>
     </div>
