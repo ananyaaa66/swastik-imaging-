@@ -14,96 +14,87 @@ const MedicalCrossLogo = () => (
       >
         <defs>
           <linearGradient
-            id="swastikGradient"
+            id="medicalLogoGradient"
             x1="0%"
             y1="0%"
             x2="100%"
             y2="100%"
           >
-            <stop
-              offset="0%"
-              style={{ stopColor: "#00704A", stopOpacity: 1 }}
-            />
-            <stop
-              offset="50%"
-              style={{ stopColor: "#4F9A68", stopOpacity: 1 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#86C49B", stopOpacity: 1 }}
-            />
+            <stop offset="0%" stopColor="#00704A" />
+            <stop offset="50%" stopColor="#4F9A68" />
+            <stop offset="100%" stopColor="#86C49B" />
           </linearGradient>
         </defs>
 
-        {/* Main interlocking cross shape */}
+        {/* Outer cross framework with rounded corners */}
         <path
-          d="M8 8 Q8 5 11 5 L31 5 L31 31 L69 31 L69 5 L89 5 Q92 5 92 8 L92 31 Q92 34 89 34 L69 34 L69 66 L89 66 Q92 66 92 69 L92 89 Q92 92 89 92 L69 92 L69 69 L31 69 L31 92 L11 92 Q8 92 8 89 L8 69 Q8 66 11 66 L31 66 L31 34 L11 34 Q8 34 8 31 L8 8 Z"
-          fill="url(#swastikGradient)"
+          d="M10 10 Q10 5 15 5 L35 5 L35 35 L65 35 L65 5 L85 5 Q90 5 90 10 L90 35 Q90 40 85 40 L65 40 L65 60 L85 60 Q90 60 90 65 L90 85 Q90 90 85 90 L65 90 L65 65 L35 65 L35 90 L15 90 Q10 90 10 85 L10 65 Q10 60 15 60 L35 60 L35 40 L15 40 Q10 40 10 35 L10 10 Z"
+          fill="url(#medicalLogoGradient)"
         />
 
-        {/* Top left inner curve */}
+        {/* Inner interlocking curves - Top Left */}
         <path
-          d="M31 31 L31 16 Q31 11 26 11 L16 11 Q11 11 11 16 L11 26 Q11 31 16 31 L31 31 Z"
+          d="M35 35 L35 20 Q35 15 30 15 L20 15 Q15 15 15 20 L15 30 Q15 35 20 35 L35 35 Z"
           fill="white"
         />
 
-        {/* Top right inner curve */}
+        {/* Inner interlocking curves - Top Right */}
         <path
-          d="M69 31 L84 31 Q89 31 89 26 L89 16 Q89 11 84 11 L74 11 Q69 11 69 16 L69 31 Z"
+          d="M65 35 L80 35 Q85 35 85 30 L85 20 Q85 15 80 15 L70 15 Q65 15 65 20 L65 35 Z"
           fill="white"
         />
 
-        {/* Bottom left inner curve */}
+        {/* Inner interlocking curves - Bottom Left */}
         <path
-          d="M31 69 L16 69 Q11 69 11 74 L11 84 Q11 89 16 89 L26 89 Q31 89 31 84 L31 69 Z"
+          d="M35 65 L20 65 Q15 65 15 70 L15 80 Q15 85 20 85 L30 85 Q35 85 35 80 L35 65 Z"
           fill="white"
         />
 
-        {/* Bottom right inner curve */}
+        {/* Inner interlocking curves - Bottom Right */}
         <path
-          d="M69 69 L69 84 Q69 89 74 89 L84 89 Q89 89 89 84 L89 74 Q89 69 84 69 L69 69 Z"
+          d="M65 65 L65 80 Q65 85 70 85 L80 85 Q85 85 85 80 L85 70 Q85 65 80 65 L65 65 Z"
           fill="white"
         />
 
-        {/* Central cross cutout */}
-        <rect x="31" y="31" width="38" height="38" fill="white" />
+        {/* Central cross area with white background */}
+        <rect x="35" y="35" width="30" height="30" fill="white" />
 
-        {/* Inner connecting elements with gradient */}
+        {/* Inner cross connecting elements */}
         <rect
-          x="37"
-          y="31"
-          width="26"
-          height="12"
-          fill="url(#swastikGradient)"
-          rx="6"
+          x="40"
+          y="35"
+          width="20"
+          height="10"
+          fill="url(#medicalLogoGradient)"
+          rx="5"
         />
         <rect
-          x="37"
-          y="57"
-          width="26"
-          height="12"
-          fill="url(#swastikGradient)"
-          rx="6"
+          x="40"
+          y="55"
+          width="20"
+          height="10"
+          fill="url(#medicalLogoGradient)"
+          rx="5"
         />
         <rect
-          x="31"
-          y="37"
-          width="12"
-          height="26"
-          fill="url(#swastikGradient)"
-          rx="6"
+          x="35"
+          y="40"
+          width="10"
+          height="20"
+          fill="url(#medicalLogoGradient)"
+          rx="5"
         />
         <rect
-          x="57"
-          y="37"
-          width="12"
-          height="26"
-          fill="url(#swastikGradient)"
-          rx="6"
+          x="55"
+          y="40"
+          width="10"
+          height="20"
+          fill="url(#medicalLogoGradient)"
+          rx="5"
         />
 
-        {/* Central square */}
-        <rect x="43" y="43" width="14" height="14" fill="white" rx="2" />
+        {/* Central white square */}
+        <rect x="45" y="45" width="10" height="10" fill="white" rx="2" />
       </svg>
     </div>
     <div className="flex flex-col">
