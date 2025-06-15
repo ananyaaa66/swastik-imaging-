@@ -35,75 +35,75 @@ const MedicalCrossLogo = () => (
           </linearGradient>
         </defs>
 
-        {/* Top-left interlocking element */}
+        {/* Main interlocking cross shape */}
         <path
-          d="M5 15 Q5 8 12 8 L25 8 L25 21 Q25 28 18 28 L12 28 Q5 28 5 21 L5 15 Z"
-          fill="url(#swastikGradient)"
-        />
-        <path
-          d="M25 8 L38 8 Q45 8 45 15 L45 25 L32 25 Q25 25 25 18 L25 8 Z"
+          d="M8 8 Q8 5 11 5 L31 5 L31 31 L69 31 L69 5 L89 5 Q92 5 92 8 L92 31 Q92 34 89 34 L69 34 L69 66 L89 66 Q92 66 92 69 L92 89 Q92 92 89 92 L69 92 L69 69 L31 69 L31 92 L11 92 Q8 92 8 89 L8 69 Q8 66 11 66 L31 66 L31 34 L11 34 Q8 34 8 31 L8 8 Z"
           fill="url(#swastikGradient)"
         />
 
-        {/* Top-right interlocking element */}
+        {/* Top left inner curve */}
         <path
-          d="M55 8 L68 8 Q75 8 75 15 L75 25 L62 25 Q55 25 55 18 L55 8 Z"
-          fill="url(#swastikGradient)"
-        />
-        <path
-          d="M75 8 L88 8 Q95 8 95 15 L95 21 Q95 28 88 28 L82 28 Q75 28 75 21 L75 8 Z"
-          fill="url(#swastikGradient)"
+          d="M31 31 L31 16 Q31 11 26 11 L16 11 Q11 11 11 16 L11 26 Q11 31 16 31 L31 31 Z"
+          fill="white"
         />
 
-        {/* Middle horizontal bar */}
+        {/* Top right inner curve */}
         <path
-          d="M8 32 L92 32 Q95 32 95 35 L95 45 L75 45 L75 55 L95 55 L95 65 Q95 68 92 68 L8 68 Q5 68 5 65 L5 55 L25 55 L25 45 L5 45 L5 35 Q5 32 8 32 Z"
-          fill="url(#swastikGradient)"
+          d="M69 31 L84 31 Q89 31 89 26 L89 16 Q89 11 84 11 L74 11 Q69 11 69 16 L69 31 Z"
+          fill="white"
         />
 
-        {/* Bottom-left interlocking element */}
+        {/* Bottom left inner curve */}
         <path
-          d="M5 79 Q5 72 12 72 L18 72 Q25 72 25 79 L25 92 L12 92 Q5 92 5 85 L5 79 Z"
-          fill="url(#swastikGradient)"
-        />
-        <path
-          d="M25 75 Q25 68 32 68 L45 68 L45 82 Q45 89 38 89 L32 89 Q25 89 25 82 L25 75 Z"
-          fill="url(#swastikGradient)"
+          d="M31 69 L16 69 Q11 69 11 74 L11 84 Q11 89 16 89 L26 89 Q31 89 31 84 L31 69 Z"
+          fill="white"
         />
 
-        {/* Bottom-right interlocking element */}
+        {/* Bottom right inner curve */}
         <path
-          d="M55 75 Q55 68 62 68 L75 68 L75 82 Q75 89 68 89 L62 89 Q55 89 55 82 L55 75 Z"
-          fill="url(#swastikGradient)"
-        />
-        <path
-          d="M75 79 Q75 72 82 72 L88 72 Q95 72 95 79 L95 85 Q95 92 88 92 L75 92 L75 79 Z"
-          fill="url(#swastikGradient)"
+          d="M69 69 L69 84 Q69 89 74 89 L84 89 Q89 89 89 84 L89 74 Q89 69 84 69 L69 69 Z"
+          fill="white"
         />
 
-        {/* Central connecting elements */}
+        {/* Central cross cutout */}
+        <rect x="31" y="31" width="38" height="38" fill="white" />
+
+        {/* Inner connecting elements with gradient */}
         <rect
-          x="32"
-          y="25"
-          width="13"
-          height="43"
+          x="37"
+          y="31"
+          width="26"
+          height="12"
           fill="url(#swastikGradient)"
           rx="6"
         />
         <rect
-          x="55"
-          y="25"
-          width="13"
-          height="43"
+          x="37"
+          y="57"
+          width="26"
+          height="12"
+          fill="url(#swastikGradient)"
+          rx="6"
+        />
+        <rect
+          x="31"
+          y="37"
+          width="12"
+          height="26"
+          fill="url(#swastikGradient)"
+          rx="6"
+        />
+        <rect
+          x="57"
+          y="37"
+          width="12"
+          height="26"
           fill="url(#swastikGradient)"
           rx="6"
         />
 
-        {/* White cutout areas for the interlocking effect */}
-        <rect x="25" y="32" width="20" height="13" fill="white" rx="3" />
-        <rect x="55" y="32" width="20" height="13" fill="white" rx="3" />
-        <rect x="25" y="55" width="20" height="13" fill="white" rx="3" />
-        <rect x="55" y="55" width="20" height="13" fill="white" rx="3" />
+        {/* Central square */}
+        <rect x="43" y="43" width="14" height="14" fill="white" rx="2" />
       </svg>
     </div>
     <div className="flex flex-col">
