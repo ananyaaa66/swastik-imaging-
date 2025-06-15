@@ -18,15 +18,26 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
+        // Healthcare brand colors
+        medical: {
+          primary: "#00704A", // Starbucks green
+          secondary: "#4F9A68", // Lighter green
+          accent: "#86C49B", // Very light green
+          light: "#E8F5E8", // Background green
+        },
+        // Existing shadcn colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#00704A",
+          foreground: "#ffffff",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
