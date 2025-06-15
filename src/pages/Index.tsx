@@ -11,7 +11,7 @@ import {
   CheckCircle,
   Microscope,
   Stethoscope,
-  XRay,
+  Radiation,
   TestTube,
   Phone,
   ArrowRight,
@@ -30,7 +30,7 @@ export default function Index() {
       description: "Complete urinalysis and microscopic examination",
     },
     {
-      icon: XRay,
+      icon: Radiation,
       title: "X-Ray",
       description: "Digital radiography for accurate diagnosis",
     },

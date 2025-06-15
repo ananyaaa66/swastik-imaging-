@@ -1,6 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TestTube, Microscope, XRay, Activity, Settings } from "lucide-react";
+import {
+  TestTube,
+  Microscope,
+  Radiation,
+  Activity,
+  Settings,
+} from "lucide-react";
 
 export default function Services() {
   const serviceCategories = [
@@ -15,7 +21,7 @@ export default function Services() {
       description: "Complete urinalysis and microscopic examination",
     },
     {
-      icon: XRay,
+      icon: Radiation,
       title: "Imaging",
       description: "Digital radiography and diagnostic imaging",
     },
