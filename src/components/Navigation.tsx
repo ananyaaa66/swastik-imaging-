@@ -35,69 +35,75 @@ const MedicalCrossLogo = () => (
           </linearGradient>
         </defs>
 
-        {/* Main interlocking cross design */}
+        {/* Top-left interlocking element */}
         <path
-          d="M8 35 L35 35 L35 8 Q35 5 38 5 L62 5 Q65 5 65 8 L65 35 L92 35 Q95 35 95 38 L95 62 Q95 65 92 65 L65 65 L65 92 Q65 95 62 95 L38 95 Q35 95 35 92 L35 65 L8 65 Q5 65 5 62 L5 38 Q5 35 8 35 Z"
+          d="M5 15 Q5 8 12 8 L25 8 L25 21 Q25 28 18 28 L12 28 Q5 28 5 21 L5 15 Z"
+          fill="url(#swastikGradient)"
+        />
+        <path
+          d="M25 8 L38 8 Q45 8 45 15 L45 25 L32 25 Q25 25 25 18 L25 8 Z"
           fill="url(#swastikGradient)"
         />
 
-        {/* Inner cross cutouts creating the interlocking effect */}
+        {/* Top-right interlocking element */}
         <path
-          d="M20 25 L25 25 L25 20 Q25 18 27 18 L40 18 L40 32 L27 32 Q25 32 25 30 L25 25 L20 25 Q18 25 18 23 L18 20 Q18 18 20 18 L20 25 Z"
-          fill="white"
+          d="M55 8 L68 8 Q75 8 75 15 L75 25 L62 25 Q55 25 55 18 L55 8 Z"
+          fill="url(#swastikGradient)"
+        />
+        <path
+          d="M75 8 L88 8 Q95 8 95 15 L95 21 Q95 28 88 28 L82 28 Q75 28 75 21 L75 8 Z"
+          fill="url(#swastikGradient)"
         />
 
+        {/* Middle horizontal bar */}
         <path
-          d="M75 25 L80 25 Q82 25 82 23 L82 20 Q82 18 80 18 L75 18 L75 20 Q75 18 73 18 L60 18 L60 32 L73 32 Q75 32 75 30 L75 25 Z"
-          fill="white"
+          d="M8 32 L92 32 Q95 32 95 35 L95 45 L75 45 L75 55 L95 55 L95 65 Q95 68 92 68 L8 68 Q5 68 5 65 L5 55 L25 55 L25 45 L5 45 L5 35 Q5 32 8 32 Z"
+          fill="url(#swastikGradient)"
         />
 
+        {/* Bottom-left interlocking element */}
         <path
-          d="M20 75 L25 75 L25 80 Q25 82 27 82 L40 82 L40 68 L27 68 Q25 68 25 70 L25 75 L20 75 Q18 75 18 77 L18 80 Q18 82 20 82 L20 75 Z"
-          fill="white"
+          d="M5 79 Q5 72 12 72 L18 72 Q25 72 25 79 L25 92 L12 92 Q5 92 5 85 L5 79 Z"
+          fill="url(#swastikGradient)"
+        />
+        <path
+          d="M25 75 Q25 68 32 68 L45 68 L45 82 Q45 89 38 89 L32 89 Q25 89 25 82 L25 75 Z"
+          fill="url(#swastikGradient)"
         />
 
+        {/* Bottom-right interlocking element */}
         <path
-          d="M75 75 L80 75 Q82 75 82 77 L82 80 Q82 82 80 82 L75 82 L75 80 Q75 82 73 82 L60 82 L60 68 L73 68 Q75 68 75 70 L75 75 Z"
-          fill="white"
+          d="M55 75 Q55 68 62 68 L75 68 L75 82 Q75 89 68 89 L62 89 Q55 89 55 82 L55 75 Z"
+          fill="url(#swastikGradient)"
+        />
+        <path
+          d="M75 79 Q75 72 82 72 L88 72 Q95 72 95 79 L95 85 Q95 92 88 92 L75 92 L75 79 Z"
+          fill="url(#swastikGradient)"
         />
 
-        {/* Central cross intersection */}
-        <rect x="40" y="40" width="20" height="20" fill="white" rx="2" />
-
-        {/* Connecting elements */}
+        {/* Central connecting elements */}
         <rect
           x="32"
-          y="45"
-          width="16"
-          height="10"
+          y="25"
+          width="13"
+          height="43"
           fill="url(#swastikGradient)"
-          rx="2"
+          rx="6"
         />
         <rect
-          x="52"
-          y="45"
-          width="16"
-          height="10"
+          x="55"
+          y="25"
+          width="13"
+          height="43"
           fill="url(#swastikGradient)"
-          rx="2"
+          rx="6"
         />
-        <rect
-          x="45"
-          y="32"
-          width="10"
-          height="16"
-          fill="url(#swastikGradient)"
-          rx="2"
-        />
-        <rect
-          x="45"
-          y="52"
-          width="10"
-          height="16"
-          fill="url(#swastikGradient)"
-          rx="2"
-        />
+
+        {/* White cutout areas for the interlocking effect */}
+        <rect x="25" y="32" width="20" height="13" fill="white" rx="3" />
+        <rect x="55" y="32" width="20" height="13" fill="white" rx="3" />
+        <rect x="25" y="55" width="20" height="13" fill="white" rx="3" />
+        <rect x="55" y="55" width="20" height="13" fill="white" rx="3" />
       </svg>
     </div>
     <div className="flex flex-col">
@@ -110,7 +116,6 @@ const MedicalCrossLogo = () => (
     </div>
   </div>
 );
-
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
