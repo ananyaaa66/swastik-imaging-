@@ -138,7 +138,7 @@ export default function Index() {
               <div className="flex flex-wrap items-center gap-6 pt-4">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-medical-primary" />
-                  <span className="text-gray-600">NABL Accredited</span>
+                  <span className="text-gray-600">ISO Certified</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-5 h-5 text-medical-primary" />

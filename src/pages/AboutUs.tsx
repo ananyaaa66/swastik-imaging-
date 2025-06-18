@@ -74,7 +74,7 @@ export default function AboutUs() {
                   Quality Assurance
                 </h3>
                 <p className="text-sm text-gray-600">
-                  NABL accredited diagnostic center
+                  ISO certified diagnostic center
                 </p>
               </CardContent>
             </Card>
