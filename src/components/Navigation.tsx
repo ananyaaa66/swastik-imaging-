@@ -6,7 +6,7 @@ import { Menu, X, Phone, MapPin } from "lucide-react";
 const MedicalCrossLogo = () => (
   <div className="flex items-center space-x-3">
     <img
-      src="swastik-logo-2.jpg"
+      src="https://cdn.builder.io/api/v1/assets/fb56e24d07534bf98f10782753fb5534/swastik-logo-2-f1bb8b?format=webp&width=800"
       alt="Client Logo"
       style={{ width: "48px", height: "auto" }}
     />
