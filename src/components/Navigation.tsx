@@ -5,98 +5,11 @@ import { Menu, X, Phone, MapPin } from "lucide-react";
 
 const MedicalCrossLogo = () => (
   <div className="flex items-center space-x-3">
-    <div className="relative w-12 h-12">
-      <svg
-        viewBox="0 0 100 100"
-        className="w-full h-full"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient
-            id="medicalLogoGradient"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="#00704A" />
-            <stop offset="50%" stopColor="#4F9A68" />
-            <stop offset="100%" stopColor="#86C49B" />
-          </linearGradient>
-        </defs>
-
-        {/* Outer cross framework with rounded corners */}
-        <path
-          d="M10 10 Q10 5 15 5 L35 5 L35 35 L65 35 L65 5 L85 5 Q90 5 90 10 L90 35 Q90 40 85 40 L65 40 L65 60 L85 60 Q90 60 90 65 L90 85 Q90 90 85 90 L65 90 L65 65 L35 65 L35 90 L15 90 Q10 90 10 85 L10 65 Q10 60 15 60 L35 60 L35 40 L15 40 Q10 40 10 35 L10 10 Z"
-          fill="url(#medicalLogoGradient)"
-        />
-
-        {/* Inner interlocking curves - Top Left */}
-        <path
-          d="M35 35 L35 20 Q35 15 30 15 L20 15 Q15 15 15 20 L15 30 Q15 35 20 35 L35 35 Z"
-          fill="white"
-        />
-
-        {/* Inner interlocking curves - Top Right */}
-        <path
-          d="M65 35 L80 35 Q85 35 85 30 L85 20 Q85 15 80 15 L70 15 Q65 15 65 20 L65 35 Z"
-          fill="white"
-        />
-
-        {/* Inner interlocking curves - Bottom Left */}
-        <path
-          d="M35 65 L20 65 Q15 65 15 70 L15 80 Q15 85 20 85 L30 85 Q35 85 35 80 L35 65 Z"
-          fill="white"
-        />
-
-        {/* Inner interlocking curves - Bottom Right */}
-        <path
-          d="M65 65 L65 80 Q65 85 70 85 L80 85 Q85 85 85 80 L85 70 Q85 65 80 65 L65 65 Z"
-          fill="white"
-        />
-
-        {/* Central cross area with white background */}
-        <rect x="35" y="35" width="30" height="30" fill="white" />
-
-        {/* Inner cross connecting elements */}
-        <rect
-          x="40"
-          y="35"
-          width="20"
-          height="10"
-          fill="url(#medicalLogoGradient)"
-          rx="5"
-        />
-        <rect
-          x="40"
-          y="55"
-          width="20"
-          height="10"
-          fill="url(#medicalLogoGradient)"
-          rx="5"
-        />
-        <rect
-          x="35"
-          y="40"
-          width="10"
-          height="20"
-          fill="url(#medicalLogoGradient)"
-          rx="5"
-        />
-        <rect
-          x="55"
-          y="40"
-          width="10"
-          height="20"
-          fill="url(#medicalLogoGradient)"
-          rx="5"
-        />
-
-        {/* Central white square */}
-        <rect x="45" y="45" width="10" height="10" fill="white" rx="2" />
-      </svg>
-    </div>
+    <img
+      src="swastik-logo-2.jpg"
+      alt="Client Logo"
+      style={{ width: "48px", height: "auto" }}
+    />
     <div className="flex flex-col">
       <h1 className="text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
         SWASTIK
