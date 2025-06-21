@@ -54,10 +54,10 @@ export default function Footer() {
                 <Clock className="w-4 h-4 text-medical-primary" />
                 <span className="text-sm text-gray-600">Monday - Saturday</span>
               </div>
-              <p className="text-gray-900 font-medium">8:00 AM - 8:00 PM</p>
+              <p className="text-gray-900 font-medium">8:30 AM - 8:30 PM</p>
               <div className="mt-3">
                 <p className="text-sm text-gray-600">Sunday</p>
-                <p className="text-gray-900 font-medium">9:00 AM - 2:00 PM</p>
+                <p className="text-gray-900 font-medium">8:30 AM - 5:00 PM</p>
               </div>
             </div>
           </div>

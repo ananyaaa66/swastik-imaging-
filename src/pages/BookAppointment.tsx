@@ -92,11 +92,11 @@ export default function BookAppointment() {
                     <p className="font-medium text-gray-900 mb-1">
                       Monday - Saturday
                     </p>
-                    <p className="text-gray-600">8:00 AM - 8:00 PM</p>
+                    <p className="text-gray-600">8:30 AM - 8:30 PM</p>
                   </div>
                   <div>
                     <p className="font-medium text-gray-900 mb-1">Sunday</p>
-                    <p className="text-gray-600">9:00 AM - 2:00 PM</p>
+                    <p className="text-gray-600">8:30 AM - 5:00 PM</p>
                   </div>
                 </div>
               </div>
