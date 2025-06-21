@@ -356,9 +356,8 @@ export default function Index() {
             </Link>
             <a href="tel:+91-7303034849">
               <Button
-                variant="outline"
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-medical-primary px-8 py-3 text-lg font-medium rounded-lg"
+                className="bg-medical-secondary text-white hover:bg-medical-primary border-2 border-white px-8 py-3 text-lg font-medium rounded-lg shadow-lg"
               >
                 <Phone className="mr-2 w-5 h-5" />
                 Call +91-7303034849
