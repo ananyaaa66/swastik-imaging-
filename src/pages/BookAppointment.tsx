@@ -1,126 +1,492 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, Phone, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Calendar,
+  Clock,
+  Phone,
+  Mail,
+  CheckCircle,
+  User,
+  FileText,
+} from "lucide-react";
 
 export default function BookAppointment() {
+  const [selectedTests, setSelectedTests] = useState<string[]>([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    date: "",
+    time: "",
+    additionalInfo: "",
+  });
+
+  const testCategories = [
+    {
+      category: "Ultrasound & Imaging",
+      tests: [
+        "Ultrasound",
+        "Color Doppler",
+        "Level II Scans",
+        "3D/4D Ultrasound",
+        "TVS and TRUS",
+        "USG Guided FNAC and BIOPSY",
+      ],
+    },
+    {
+      category: "Advanced Radiology",
+      tests: ["CT Scan", "MRI Scan", "X-Ray", "Interventional Radiology"],
+    },
+    {
+      category: "Cardiac Diagnostics",
+      tests: ["ECG", "2D ECHO", "Stress ECHO"],
+    },
+    {
+      category: "Laboratory Tests",
+      tests: [
+        "Complete Blood Count (CBC)",
+        "Lipid Profile",
+        "Liver Function Tests",
+        "Kidney Function Tests",
+        "Thyroid Function Tests",
+        "Diabetes Panel",
+        "Tumor Markers",
+        "Urine Analysis",
+        "Blood Sugar",
+        "HbA1c",
+        "ESR",
+        "CRP",
+      ],
+    },
+    {
+      category: "Health Packages",
+      tests: [
+        "Basic Health Check Up",
+        "Executive Health Package",
+        "Diabetes Screening",
+        "Cardiac Health Package",
+        "Women's Health Package",
+        "Senior Citizen Package",
+      ],
+    },
+    {
+      category: "Consultation",
+      tests: [
+        "General Consultation",
+        "Report Analysis",
+        "Second Opinion",
+        "Health Counseling",
+      ],
+    },
+  ];
+
+  const timeSlots = [
+    "8:30 AM",
+    "9:00 AM",
+    "9:30 AM",
+    "10:00 AM",
+    "10:30 AM",
+    "11:00 AM",
+    "11:30 AM",
+    "12:00 PM",
+    "12:30 PM",
+    "1:00 PM",
+    "1:30 PM",
+    "2:00 PM",
+    "2:30 PM",
+    "3:00 PM",
+    "3:30 PM",
+    "4:00 PM",
+    "4:30 PM",
+    "5:00 PM",
+    "5:30 PM",
+    "6:00 PM",
+    "6:30 PM",
+    "7:00 PM",
+    "7:30 PM",
+    "8:00 PM",
+  ];
+
+  const handleTestSelection = (test: string) => {
+    setSelectedTests((prev) =>
+      prev.includes(test) ? prev.filter((t) => t !== test) : [...prev, test],
+    );
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the data to your backend
+    console.log("Form submitted:", { ...formData, selectedTests });
+    alert(
+      "Appointment request submitted successfully! We will contact you shortly to confirm.",
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-medical-light via-white to-medical-light py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-medical-light via-white to-medical-light py-12 lg:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="bg-medical-accent text-medical-primary border-medical-secondary mb-4">
-              Book Appointment
+              Book Your Appointment
             </Badge>
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Schedule Your Diagnostic Test
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Easy appointment booking for all your diagnostic needs. No login
-              required.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Fill out the form below to book your appointment. No login
+              required. We'll contact you to confirm your booking details.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Content Placeholder */}
-      <section className="py-16 lg:py-24">
+      {/* Booking Form */}
+      <section className="py-12 lg:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-medical-light rounded-full mb-4">
-              <Calendar className="w-8 h-8 text-medical-primary" />
-            </div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              Appointment Booking System Under Development
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We're creating a simple, user-friendly appointment booking form.
-              In the meantime, please contact us directly to schedule your
-              appointment.
-            </p>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Main Form */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Personal Information */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <User className="w-5 h-5 text-medical-primary" />
+                      <span>Personal Information</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <Label
+                        htmlFor="name"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Full Name *
+                      </Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
+                        placeholder="Enter your full name"
+                        className="mt-1"
+                      />
+                    </div>
 
-          {/* Contact Methods */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <Card className="border-gray-200 hover:border-medical-primary hover:shadow-lg transition-all duration-200">
-              <CardContent className="p-6 text-center">
-                <Phone className="w-8 h-8 text-medical-primary mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Call to Book
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Speak directly with our staff to schedule your appointment
-                </p>
-                <a
-                  href="tel:+91-7303034849"
-                  className="inline-flex items-center justify-center px-6 py-2 bg-medical-primary text-white rounded-lg hover:bg-medical-secondary transition-colors duration-200"
-                >
-                  +91-7303034849
-                </a>
-              </CardContent>
-            </Card>
+                    <div>
+                      <Label
+                        htmlFor="phone"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Contact Number *
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
+                        placeholder="+91-XXXXXXXXXX"
+                        className="mt-1"
+                      />
+                    </div>
 
-            <Card className="border-gray-200 hover:border-medical-primary hover:shadow-lg transition-all duration-200">
-              <CardContent className="p-6 text-center">
-                <Mail className="w-8 h-8 text-medical-primary mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Email Us
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Send us your appointment request via email
-                </p>
-                <a
-                  href="mailto:swastikimaginganddiagnostics@gmail.com"
-                  className="inline-flex items-center justify-center px-6 py-2 border border-medical-primary text-medical-primary rounded-lg hover:bg-medical-primary hover:text-white transition-colors duration-200"
-                >
-                  Email Now
-                </a>
-              </CardContent>
-            </Card>
-          </div>
+                    <div>
+                      <Label
+                        htmlFor="email"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Email Address (Optional)
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
+                        placeholder="your.email@example.com"
+                        className="mt-1"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
 
-          {/* Operating Hours */}
-          <Card className="border-gray-200 bg-gray-50">
-            <CardContent className="p-6">
-              <div className="text-center">
-                <Clock className="w-8 h-8 text-medical-primary mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Operating Hours
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="font-medium text-gray-900 mb-1">
-                      Monday - Saturday
+                {/* Appointment Details */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Calendar className="w-5 h-5 text-medical-primary" />
+                      <span>Appointment Details</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <Label
+                        htmlFor="date"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Preferred Date *
+                      </Label>
+                      <Input
+                        id="date"
+                        type="date"
+                        required
+                        value={formData.date}
+                        onChange={(e) =>
+                          handleInputChange("date", e.target.value)
+                        }
+                        min={new Date().toISOString().split("T")[0]}
+                        className="mt-1"
+                      />
+                    </div>
+
+                    <div>
+                      <Label
+                        htmlFor="time"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Preferred Time *
+                      </Label>
+                      <select
+                        id="time"
+                        required
+                        value={formData.time}
+                        onChange={(e) =>
+                          handleInputChange("time", e.target.value)
+                        }
+                        className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-medical-primary focus:border-transparent"
+                      >
+                        <option value="">Select a time slot</option>
+                        {timeSlots.map((slot) => (
+                          <option key={slot} value={slot}>
+                            {slot}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Test Selection */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <FileText className="w-5 h-5 text-medical-primary" />
+                      <span>Select Tests</span>
+                    </CardTitle>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Choose the diagnostic tests you need. You can select
+                      multiple tests.
                     </p>
-                    <p className="text-gray-600">8:30 AM - 8:30 PM</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900 mb-1">Sunday</p>
-                    <p className="text-gray-600">8:30 AM - 5:00 PM</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="max-h-96 overflow-y-auto space-y-6 pr-2">
+                      {testCategories.map((category, categoryIndex) => (
+                        <div key={categoryIndex}>
+                          <h4 className="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide">
+                            {category.category}
+                          </h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {category.tests.map((test, testIndex) => (
+                              <div
+                                key={testIndex}
+                                className="flex items-center space-x-2"
+                              >
+                                <Checkbox
+                                  id={`test-${categoryIndex}-${testIndex}`}
+                                  checked={selectedTests.includes(test)}
+                                  onCheckedChange={() =>
+                                    handleTestSelection(test)
+                                  }
+                                />
+                                <Label
+                                  htmlFor={`test-${categoryIndex}-${testIndex}`}
+                                  className="text-sm text-gray-700 cursor-pointer flex-1"
+                                >
+                                  {test}
+                                </Label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
 
-          {/* Future Form Preview */}
-          <div className="mt-12 text-center">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Coming Soon: Online Booking Form
-            </h3>
-            <div className="bg-gray-50 rounded-lg p-8 border-2 border-dashed border-gray-300">
-              <p className="text-gray-600 mb-4">
-                The appointment booking form will include:
-              </p>
-              <ul className="text-left max-w-md mx-auto space-y-2 text-gray-600">
-                <li>• Name and Contact Information</li>
-                <li>• Preferred Date and Time</li>
-                <li>• Test Selection (dropdown/multi-select)</li>
-                <li>• Additional Information (optional)</li>
-                <li>• Instant Confirmation</li>
-              </ul>
+                    {selectedTests.length > 0 && (
+                      <div className="mt-4 p-3 bg-medical-light rounded-lg">
+                        <p className="text-sm font-medium text-medical-primary mb-2">
+                          Selected Tests ({selectedTests.length}):
+                        </p>
+                        <div className="flex flex-wrap gap-1">
+                          {selectedTests.map((test, index) => (
+                            <Badge
+                              key={index}
+                              variant="secondary"
+                              className="text-xs bg-medical-accent text-medical-primary"
+                            >
+                              {test}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Additional Information */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <FileText className="w-5 h-5 text-medical-primary" />
+                      <span>Additional Information</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div>
+                      <Label
+                        htmlFor="additionalInfo"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Any additional information or special requirements
+                        (Optional)
+                      </Label>
+                      <Textarea
+                        id="additionalInfo"
+                        value={formData.additionalInfo}
+                        onChange={(e) =>
+                          handleInputChange("additionalInfo", e.target.value)
+                        }
+                        placeholder="Please mention any specific requirements, medical conditions, or questions..."
+                        rows={4}
+                        className="mt-1"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  className="w-full bg-medical-primary hover:bg-medical-secondary text-white py-3 text-lg font-medium"
+                  disabled={
+                    !formData.name ||
+                    !formData.phone ||
+                    !formData.date ||
+                    !formData.time ||
+                    selectedTests.length === 0
+                  }
+                >
+                  <CheckCircle className="mr-2 w-5 h-5" />
+                  Confirm Appointment
+                </Button>
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-6">
+                {/* Contact Information */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Need Help?</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <Phone className="w-5 h-5 text-medical-primary" />
+                      <div>
+                        <p className="font-medium text-gray-900">Call Us</p>
+                        <a
+                          href="tel:+91-7303034849"
+                          className="text-medical-primary hover:underline"
+                        >
+                          +91-7303034849
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3">
+                      <Mail className="w-5 h-5 text-medical-primary" />
+                      <div>
+                        <p className="font-medium text-gray-900">Email Us</p>
+                        <a
+                          href="mailto:swastikimaginganddiagnostics@gmail.com"
+                          className="text-medical-primary hover:underline text-sm"
+                        >
+                          swastikimaginganddiagnostics@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Operating Hours */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Clock className="w-5 h-5 text-medical-primary" />
+                      <span>Operating Hours</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="font-medium text-gray-900">
+                          Monday - Saturday
+                        </span>
+                      </div>
+                      <div className="text-medical-primary font-medium">
+                        8:30 AM - 8:30 PM
+                      </div>
+
+                      <div className="flex justify-between mt-3">
+                        <span className="font-medium text-gray-900">
+                          Sunday
+                        </span>
+                      </div>
+                      <div className="text-medical-primary font-medium">
+                        8:30 AM - 5:00 PM
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Important Notes */}
+                <Card className="bg-medical-light border-medical-accent">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold text-medical-primary mb-2">
+                      Important Notes:
+                    </h3>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>
+                        • Please arrive 15 minutes before your appointment
+                      </li>
+                      <li>• Bring a valid ID proof</li>
+                      <li>
+                        • Fast for 8-12 hours for blood tests (if required)
+                      </li>
+                      <li>• We'll confirm your appointment via phone</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </div>
