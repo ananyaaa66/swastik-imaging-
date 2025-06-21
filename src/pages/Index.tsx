@@ -224,15 +224,6 @@ export default function Index() {
                 compassionate care. We believe quality healthcare should be
                 accessible to everyone.
               </p>
-              <Link to="/about">
-                <Button
-                  variant="outline"
-                  className="border-medical-primary text-medical-primary hover:bg-medical-primary hover:text-white"
-                >
-                  Learn More About Us
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
