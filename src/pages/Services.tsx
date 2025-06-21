@@ -248,7 +248,7 @@ export default function Services() {
             <a href="tel:+91-7303034849">
               <Button
                 size="lg"
-                className="bg-medical-secondary text-white hover:bg-medical-primary border-2 border-white px-8 py-3 text-lg font-medium rounded-lg shadow-lg"
+                className="bg-white text-medical-primary hover:bg-gray-50 border-2 border-white px-8 py-3 text-lg font-medium rounded-lg shadow-lg"
               >
                 <Phone className="mr-2 w-5 h-5" />
                 Call +91-7303034849
