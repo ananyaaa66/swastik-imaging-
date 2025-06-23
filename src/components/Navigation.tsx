@@ -51,7 +51,7 @@ export default function Navigation() {
                 </span>
               </div>
             </div>
-            <div className="text-medical-primary font-medium">
+            <div className="text-medical-primary font-bold">
               Dr. Shweta Singh - M.B.B.S MD RADIOLOGY
             </div>
           </div>
