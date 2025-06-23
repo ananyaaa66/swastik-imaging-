@@ -38,20 +38,20 @@ export default function Navigation() {
       {/* Top contact bar */}
       <div className="bg-medical-light border-b border-medical-accent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4 text-sm">
+          <div className="flex justify-between items-center py-2 text-sm">
             <div className="flex items-center space-x-6">
               <div className="hidden md:flex items-center space-x-2 text-medical-primary">
                 <Phone className="w-4 h-4" />
-                <span className="font-bold">+91-7303034849</span>
+                <span className="font-medium">+91-7303034849</span>
               </div>
               <div className="flex items-center space-x-2 text-medical-primary">
                 <MapPin className="w-4 h-4" />
-                <span className="font-bold">
+                <span>
                   26/3, Ground Floor, Old Rajinder Nagar, New Delhi-110060
                 </span>
               </div>
             </div>
-            <div className="text-medical-primary font-bold">
+            <div className="text-medical-primary font-medium">
               Dr. Shweta Singh - M.B.B.S MD RADIOLOGY
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Navigation() {
 
       {/* Main navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-6">
+        <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex-shrink-0">
             <MedicalCrossLogo />
           </Link>
