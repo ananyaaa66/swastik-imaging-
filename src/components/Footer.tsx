@@ -103,8 +103,8 @@ export default function Footer() {
               <p className="text-gray-600 text-sm">
                 © 2024 Swastik Imaging & Diagnostics. All rights reserved.
               </p>
-              <p className="text-gray-500 text-xs mt-1">
-                Led by Dr. Shweta Singh - M.B.B.S MD RADIOLOGY (GOLD MEDALIST)
+              <p className="text-medical-primary font-semibold text-sm mt-1">
+                ⭐ Led by Dr. Shweta Singh - Gold Medalist ⭐
               </p>
             </div>
             <div className="mt-4 md:mt-0">
