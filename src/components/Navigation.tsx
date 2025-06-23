@@ -44,7 +44,7 @@ export default function Navigation() {
                 <Phone className="w-4 h-4" />
                 <span className="font-bold">+91-7303034849</span>
               </div>
-              <div className="hidden md:flex items-center space-x-2 text-medical-primary">
+              <div className="flex items-center space-x-2 text-medical-primary">
                 <MapPin className="w-4 h-4" />
                 <span className="font-bold">
                   26/3, Ground Floor, Old Rajinder Nagar, New Delhi-110060
