@@ -50,7 +50,7 @@ export default function AboutUs() {
   const achievements = [
     {
       icon: Users,
-      number: "500+",
+      number: "1000+",
       title: "Happy Patients",
       description: "Satisfied patients who trust us with their health",
     },
