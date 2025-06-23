@@ -38,7 +38,7 @@ export default function Navigation() {
       {/* Top contact bar */}
       <div className="bg-medical-light border-b border-medical-accent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-2 text-sm">
+          <div className="flex justify-between items-center py-4 text-sm">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2 text-medical-primary">
                 <Phone className="w-4 h-4" />
@@ -60,7 +60,7 @@ export default function Navigation() {
 
       {/* Main navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-6">
           <Link to="/" className="flex-shrink-0">
             <MedicalCrossLogo />
           </Link>
