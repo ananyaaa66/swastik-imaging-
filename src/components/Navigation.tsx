@@ -42,7 +42,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2 text-medical-primary">
                 <Phone className="w-4 h-4" />
-                <span className="font-medium">+91-7303034849</span>
+                <span className="font-bold">+91-7303034849</span>
               </div>
               <div className="hidden md:flex items-center space-x-2 text-medical-primary">
                 <MapPin className="w-4 h-4" />
