@@ -46,7 +46,7 @@ export default function Navigation() {
               </div>
               <div className="hidden md:flex items-center space-x-2 text-medical-primary">
                 <MapPin className="w-4 h-4" />
-                <span>
+                <span className="font-bold">
                   26/3, Ground Floor, Old Rajinder Nagar, New Delhi-110060
                 </span>
               </div>
