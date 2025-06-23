@@ -51,8 +51,8 @@ export default function Navigation() {
                 </span>
               </div>
             </div>
-            <div className="text-medical-primary font-bold text-lg lg:text-xl bg-gradient-to-r from-medical-primary to-medical-secondary bg-clip-text text-transparent">
-              ✨ Led by Dr. Shweta Singh - Gold Medalist ✨
+            <div className="text-medical-primary font-medium">
+              Dr. Shweta Singh - M.B.B.S MD RADIOLOGY
             </div>
           </div>
         </div>
