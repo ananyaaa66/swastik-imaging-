@@ -56,7 +56,7 @@ export default function AboutUs() {
     },
     {
       icon: Award,
-      number: "15+",
+      number: "10+",
       title: "Years Experience",
       description: "Combined experience in diagnostic healthcare",
     },
@@ -79,7 +79,7 @@ export default function AboutUs() {
       name: "Dr. Shweta Singh",
       qualification: "M.B.B.S MD RADIOLOGY (GOLD MEDALIST)",
       specialization: "Chief Radiologist & Medical Director",
-      experience: "15+ years",
+      experience: "10+ years",
       description:
         "Gold medalist in Radiology with extensive experience in diagnostic imaging and interventional radiology.",
     },
@@ -233,7 +233,7 @@ export default function AboutUs() {
                   <div className="space-y-4">
                     <p className="text-gray-700 leading-relaxed">
                       Dr. Shweta Singh is a highly accomplished radiologist with
-                      over 15 years of experience in diagnostic imaging and
+                      over 10 years of experience in diagnostic imaging and
                       interventional radiology. As a gold medalist in her MD
                       Radiology, she brings exceptional expertise and precision
                       to every diagnosis.
@@ -250,7 +250,7 @@ export default function AboutUs() {
                     <div className="flex items-center text-medical-primary">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       <span className="text-sm font-medium">
-                        15+ Years Experience
+                        10+ Years Experience
                       </span>
                     </div>
                     <div className="flex items-center text-medical-primary">
@@ -437,7 +437,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
               "Gold Medalist Radiologist",
-              "15+ Years of Experience",
+              "10+ Years of Experience",
               "State-of-the-art Equipment",
               "Same Day Results",
               "Affordable Pricing",
