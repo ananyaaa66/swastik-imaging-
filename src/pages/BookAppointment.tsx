@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import {
 } from "lucide-react";
 
 export default function BookAppointment() {
+  const navigate = useNavigate();
   const [selectedTests, setSelectedTests] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -125,11 +127,22 @@ export default function BookAppointment() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Create URL parameters for the confirmation page
+    const params = new URLSearchParams({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email || "",
+      date: formData.date,
+      time: formData.time,
+      tests: selectedTests.join(","),
+    });
+
     // Here you would typically send the data to your backend
     console.log("Form submitted:", { ...formData, selectedTests });
-    alert(
-      "Appointment request submitted successfully! We will contact you shortly to confirm.",
-    );
+
+    // Redirect to confirmation page with appointment details
+    navigate(`/appointment-confirmation?${params.toString()}`);
   };
 
   return (
