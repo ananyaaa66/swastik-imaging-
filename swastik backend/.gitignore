@@ -1,0 +1,54 @@
+# Environment variables (CRITICAL to exclude!)
+.env
+
+# Node.js dependencies
+node_modules/
+
+# Log files
+*.log
+logs/
+
+# Runtime data and cache
+*.pid
+*.seed
+*.pid.lock
+*.sock
+*.sock.lock
+
+# macOS hidden files
+.DS_Store
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Testing coverage
+coverage/
+.nyc_output/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Supabase local emulator (if used)
+.supabase/
+
+# Temporary files
+tmp/
+temp/
+
+# Sensitive files
+*.key
+*.cert
+*.pem
