@@ -20,14 +20,9 @@ import {
 export default function Index() {
   const services = [
     {
-      icon: TestTube,
-      title: "Blood Tests",
-      description: "Comprehensive blood analysis and screening",
-    },
-    {
       icon: Microscope,
-      title: "Urine Tests",
-      description: "Complete urinalysis and microscopic examination",
+      title: "Ultrasound",
+      description: "Advanced ultrasound imaging for accurate diagnosis",
     },
     {
       icon: Radiation,
@@ -38,6 +33,11 @@ export default function Index() {
       icon: Activity,
       title: "ECG",
       description: "Electrocardiogram for heart health monitoring",
+    },
+    {
+      icon: TestTube,
+      title: "Blood Tests",
+      description: "Comprehensive blood analysis and screening",
     },
   ];
 
