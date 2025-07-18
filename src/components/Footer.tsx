@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Footer() {
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -71,24 +74,28 @@ export default function Footer() {
             <div className="space-y-2">
               <Link
                 to="/"
+                onClick={handleLinkClick}
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Home
               </Link>
               <Link
                 to="/about"
+                onClick={handleLinkClick}
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 About Us
               </Link>
               <Link
                 to="/services"
+                onClick={handleLinkClick}
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Services
               </Link>
               <Link
                 to="/book-appointment"
+                onClick={handleLinkClick}
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Book Appointment
