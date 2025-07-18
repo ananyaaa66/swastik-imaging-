@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Footer() {
@@ -68,30 +69,30 @@ export default function Footer() {
               Quick Links
             </h3>
             <div className="space-y-2">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Home
-              </a>
-              <a
-                href="/about"
+              </Link>
+              <Link
+                to="/about"
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 About Us
-              </a>
-              <a
-                href="/services"
+              </Link>
+              <Link
+                to="/services"
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Services
-              </a>
-              <a
-                href="/book-appointment"
+              </Link>
+              <Link
+                to="/book-appointment"
                 className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
               >
                 Book Appointment
-              </a>
+              </Link>
             </div>
           </div>
         </div>
