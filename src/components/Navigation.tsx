@@ -11,11 +11,11 @@ const MedicalCrossLogo = () => (
       style={{ width: "48px", height: "auto" }}
     />
     <div className="flex flex-col">
-      <h1 className="text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
+      <h1 className="text-xl lg:text-2xl font-bold text-medical-primary leading-tight tracking-wide">
         SWASTIK
       </h1>
-      <p className="text-sm lg:text-base text-medical-primary font-medium leading-tight">
-        IMAGING & DIAGNOSTICS
+      <p className="text-sm lg:text-base text-gray-900 font-semibold leading-tight tracking-wide">
+        Imaging & Diagnostics
       </p>
     </div>
   </div>
