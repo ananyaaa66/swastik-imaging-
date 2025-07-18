@@ -225,6 +225,103 @@ export default function Services() {
         </div>
       </section>
 
+      {/* FAQs Section */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600">
+              Common questions about our diagnostic services
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                How long does it take to get test results?
+              </h3>
+              <p className="text-gray-600">
+                Most blood tests and basic diagnostic tests provide same-day
+                results. Advanced imaging like CT/MRI scans typically take 24-48
+                hours. We'll inform you of the exact timeline when you book your
+                appointment.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Do I need to fast before blood tests?
+              </h3>
+              <p className="text-gray-600">
+                Fasting requirements depend on the specific tests ordered.
+                Common tests like lipid profile, glucose, and liver function
+                tests require 8-12 hours of fasting. We'll provide specific
+                instructions when you book your appointment.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Can I book multiple tests in one appointment?
+              </h3>
+              <p className="text-gray-600">
+                Yes, you can book multiple tests during a single visit. This is
+                often more convenient and cost-effective. Our staff will
+                coordinate the timing and preparation requirements for all your
+                tests.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                What should I bring for my appointment?
+              </h3>
+              <p className="text-gray-600">
+                Please bring a valid photo ID (Aadhar card, driving license,
+                etc.), any previous medical reports or prescriptions, and your
+                insurance card if applicable. Wear comfortable, loose-fitting
+                clothing for certain tests.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Are your diagnostic equipment and lab NABL certified?
+              </h3>
+              <p className="text-gray-600">
+                Yes, we are ISO certified and follow international quality
+                standards. Our laboratory equipment is regularly calibrated and
+                maintained to ensure accurate and reliable results.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Do you provide home sample collection?
+              </h3>
+              <p className="text-gray-600">
+                Yes, we offer home sample collection services for blood tests
+                and other basic samples. Additional charges may apply. Please
+                call us at +91-7303034849 to schedule home collection.
+              </p>
+            </div>
+
+            <div className="border border-gray-200 rounded-lg p-6 hover:border-medical-primary transition-colors duration-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Can I get a digital copy of my reports?
+              </h3>
+              <p className="text-gray-600">
+                Yes, all reports are available in digital format. You can
+                collect physical copies from our center or request digital
+                copies to be sent via email or WhatsApp for your convenience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-medical-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
