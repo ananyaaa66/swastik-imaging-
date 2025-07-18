@@ -202,8 +202,12 @@ export default function AboutUs() {
             <CardContent className="p-8 lg:p-12">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-1 text-center">
-                  <div className="w-32 h-32 mx-auto mb-6 bg-medical-light rounded-full flex items-center justify-center">
-                    <Stethoscope className="w-16 h-16 text-medical-primary" />
+                  <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-medical-primary shadow-lg">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2Ffb56e24d07534bf98f10782753fb5534%2Feb2102651bdc422e98e458bf6c03430b?format=webp&width=800"
+                      alt="Dr. Shweta Singh"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="space-y-2">
                     <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">
