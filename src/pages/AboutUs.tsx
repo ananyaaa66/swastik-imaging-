@@ -378,49 +378,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 lg:py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Our Expert Team
-            </h2>
-            <p className="text-xl text-gray-600">
-              Experienced professionals dedicated to your health
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="border-gray-200 bg-white">
-                <CardContent className="p-6">
-                  <div className="text-center mb-4">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-medical-light rounded-full flex items-center justify-center">
-                      <Users className="w-8 h-8 text-medical-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-medical-primary font-medium text-sm mb-1">
-                      {member.qualification}
-                    </p>
-                    <p className="text-gray-600 text-sm mb-1">
-                      {member.specialization}
-                    </p>
-                    <Badge variant="secondary" className="text-xs">
-                      {member.experience}
-                    </Badge>
-                  </div>
-                  <p className="text-gray-600 text-sm text-center">
-                    {member.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Us */}
       <section className="py-16 lg:py-24 bg-medical-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
