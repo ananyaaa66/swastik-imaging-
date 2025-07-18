@@ -74,33 +74,6 @@ export default function AboutUs() {
     },
   ];
 
-  const team = [
-    {
-      name: "Dr. Shweta Singh",
-      qualification: "M.B.B.S MD RADIOLOGY (GOLD MEDALIST)",
-      specialization: "Chief Radiologist & Medical Director",
-      experience: "10+ years",
-      description:
-        "Gold medalist in Radiology with extensive experience in diagnostic imaging and interventional radiology.",
-    },
-    {
-      name: "Laboratory Team",
-      qualification: "Certified Lab Technicians",
-      specialization: "Blood & Urine Analysis",
-      experience: "10+ years",
-      description:
-        "Experienced team of certified laboratory technicians ensuring accurate test results.",
-    },
-    {
-      name: "Imaging Specialists",
-      qualification: "Certified Radiologic Technologists",
-      specialization: "CT, MRI & Ultrasound",
-      experience: "8+ years",
-      description:
-        "Skilled imaging specialists trained in advanced diagnostic equipment operation.",
-    },
-  ];
-
   const facilities = [
     {
       icon: Brain,
