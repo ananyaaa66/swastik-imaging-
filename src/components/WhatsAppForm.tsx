@@ -1,11 +1,12 @@
-// WhatsAppForm.tsx
-
 import React, { useState } from 'react';
 
 const WhatsAppForm: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [testType, setTestType] = useState<string>('');
+  const [slotTime, setSlotTime] = useState<string>('');
+  const [note, setNote] = useState<string>('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -13,19 +14,29 @@ const WhatsAppForm: React.FC = () => {
     setStatus('sending');
 
     try {
-      const res = await fetch('/api/sendWhatsApp', {
+      const res = await fetch('/api/send-whatsapp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, phone, message }),
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          testType,
+          slotTime,
+          note,
+        }),
       });
 
       if (res.ok) {
         setStatus('success');
         setName('');
         setPhone('');
-        setMessage('');
+        setEmail('');
+        setTestType('');
+        setSlotTime('');
+        setNote('');
       } else {
         setStatus('error');
       }
@@ -41,7 +52,7 @@ const WhatsAppForm: React.FC = () => {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Your Name"
+        placeholder="Full Name"
         required
       />
       <input
@@ -51,18 +62,39 @@ const WhatsAppForm: React.FC = () => {
         placeholder="Phone Number"
         required
       />
-      <textarea
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Your Message"
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email Address"
         required
+      />
+      <input
+        type="text"
+        value={testType}
+        onChange={(e) => setTestType(e.target.value)}
+        placeholder="Test Type (e.g., MRI, X-Ray)"
+        required
+      />
+      <input
+        type="text"
+        value={slotTime}
+        onChange={(e) => setSlotTime(e.target.value)}
+        placeholder="Preferred Slot Timing"
+        required
+      />
+      <textarea
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        placeholder="Additional Note (Optional)"
       ></textarea>
+
       <button type="submit" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending...' : 'Send via WhatsApp'}
+        {status === 'sending' ? 'Sending...' : 'Book Appointment'}
       </button>
 
-      {status === 'success' && <p>Message sent successfully!</p>}
-      {status === 'error' && <p>Failed to send message. Try again.</p>}
+      {status === 'success' && <p>✅ Appointment sent via WhatsApp!</p>}
+      {status === 'error' && <p>❌ Failed to send appointment. Please try again.</p>}
     </form>
   );
 };
