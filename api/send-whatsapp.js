@@ -17,14 +17,12 @@ export default async function handler(req, res) {
 
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const from = process.env.TWILIO_WHATSAPP_FROM; // e.g. "whatsapp:+14155238886"
-  const to = process.env.CLINIC_WHATSAPP_TO; // e.g. "whatsapp:+91XXXXXXXXXX"
+  const from = process.env.TWILIO_WHATSAPP_FROM || "whatsapp:+14155238886";
+  const to = process.env.CLINIC_WHATSAPP_TO || "whatsapp:+917303034849";
 
   const missing = [
     !accountSid && "TWILIO_ACCOUNT_SID",
     !authToken && "TWILIO_AUTH_TOKEN",
-    !from && "TWILIO_WHATSAPP_FROM",
-    !to && "CLINIC_WHATSAPP_TO",
   ].filter(Boolean);
   if (missing.length) {
     res
