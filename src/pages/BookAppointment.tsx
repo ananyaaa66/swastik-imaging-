@@ -125,24 +125,44 @@ export default function BookAppointment() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Create URL parameters for the confirmation page
-    const params = new URLSearchParams({
+    const payload = {
       name: formData.name,
       phone: formData.phone,
       email: formData.email || "",
       date: formData.date,
       time: formData.time,
-      tests: selectedTests.join(","),
-    });
+      tests: selectedTests,
+      additionalInfo: formData.additionalInfo || "",
+    };
 
-    // Here you would typically send the data to your backend
-    console.log("Form submitted:", { ...formData, selectedTests });
+    try {
+      const response = await fetch("/api/send-whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    // Redirect to confirmation page with appointment details
-    navigate(`/appointment-confirmation?${params.toString()}`);
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || "Failed to send WhatsApp notification.");
+      }
+
+      const params = new URLSearchParams({
+        name: payload.name,
+        phone: payload.phone,
+        email: payload.email,
+        date: payload.date,
+        time: payload.time,
+        tests: payload.tests.join(","),
+      });
+
+      navigate(`/appointment-confirmation?${params.toString()}`);
+    } catch (error) {
+      alert("Could not send appointment notification. Please try again.");
+    }
   };
 
   return (
