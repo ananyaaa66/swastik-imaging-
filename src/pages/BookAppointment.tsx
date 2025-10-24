@@ -162,8 +162,9 @@ export default function BookAppointment() {
       });
 
       navigate(`/appointment-confirmation?${params.toString()}`);
-    } catch (error) {
-      alert("Could not send appointment notification. Please try again.");
+    } catch (error: any) {
+      console.error("Send WhatsApp error", error);
+      alert(error?.message || "Could not send appointment notification. Please try again.");
     }
   };
 
