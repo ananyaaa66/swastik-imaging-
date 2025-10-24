@@ -33,11 +33,9 @@ export default async function handler(req, res) {
     return;
   }
   if (!from.startsWith("whatsapp:") || !to.startsWith("whatsapp:")) {
-    res
-      .status(400)
-      .json({
-        error: "Numbers must be in 'whatsapp:+<countrycode><number>' format.",
-      });
+    res.status(400).json({
+      error: "Numbers must be in 'whatsapp:+<countrycode><number>' format.",
+    });
     return;
   }
 
@@ -73,11 +71,9 @@ export default async function handler(req, res) {
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error("Twilio error", err?.message);
-    res
-      .status(500)
-      .json({
-        error:
-          "Failed to send WhatsApp message. Check Twilio credentials and number approval.",
-      });
+    res.status(500).json({
+      error:
+        "Failed to send WhatsApp message. Check Twilio credentials and number approval.",
+    });
   }
 }
