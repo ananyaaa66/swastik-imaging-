@@ -29,7 +29,14 @@ export default async function handler(req, res) {
 
   const { name, phone, email, date, time, tests, additionalInfo } = body || {};
 
-  if (!name || !phone || !date || !time || !Array.isArray(tests) || tests.length === 0) {
+  if (
+    !name ||
+    !phone ||
+    !date ||
+    !time ||
+    !Array.isArray(tests) ||
+    tests.length === 0
+  ) {
     res.status(400).json({ error: "Missing required fields." });
     return;
   }
