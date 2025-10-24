@@ -88,6 +88,8 @@ export default function BookAppointment() {
     },
   ];
 
+  const API_BASE = import.meta.env.VITE_API_BASE || "";
+
   const timeSlots = [
     "8:30 AM",
     "9:00 AM",
@@ -139,7 +141,7 @@ export default function BookAppointment() {
     };
 
     try {
-      const response = await fetch("/api/send-whatsapp", {
+      const response = await fetch(`${API_BASE}/api/send-whatsapp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

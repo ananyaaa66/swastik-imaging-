@@ -12,8 +12,18 @@ export default async function handler(req, res) {
   const from = process.env.TWILIO_WHATSAPP_FROM; // e.g. "whatsapp:+14155238886"
   const to = process.env.CLINIC_WHATSAPP_TO; // e.g. "whatsapp:+91XXXXXXXXXX"
 
-  if (!accountSid || !authToken || !from || !to) {
-    res.status(500).json({ error: "Missing Twilio configuration." });
+  const missing = [
+    !accountSid && "TWILIO_ACCOUNT_SID",
+    !authToken && "TWILIO_AUTH_TOKEN",
+    !from && "TWILIO_WHATSAPP_FROM",
+    !to && "CLINIC_WHATSAPP_TO",
+  ].filter(Boolean);
+  if (missing.length) {
+    res.status(500).json({ error: `Missing environment variables: ${missing.join(", ")}` });
+    return;
+  }
+  if (!from.startsWith("whatsapp:") || !to.startsWith("whatsapp:")) {
+    res.status(400).json({ error: "Numbers must be in 'whatsapp:+<countrycode><number>' format." });
     return;
   }
 
@@ -49,6 +59,6 @@ export default async function handler(req, res) {
     res.status(200).json({ ok: true });
   } catch (err) {
     console.error("Twilio error", err?.message);
-    res.status(500).json({ error: "Failed to send WhatsApp message." });
+    res.status(500).json({ error: "Failed to send WhatsApp message. Check Twilio credentials and number approval." });
   }
 }
