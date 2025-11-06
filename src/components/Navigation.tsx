@@ -67,7 +67,7 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {navItems.map((item) =>
               item.path === "/book-appointment" ? (
                 // Replaced Link with tel anchor for Book Appointment in navbar
                 <a
@@ -89,8 +89,8 @@ export default function Navigation() {
                 >
                   {item.name}
                 </Link>
-              )
-            ))}
+              ),
+            )}
           </div>
 
           {/* CTA Button - Desktop */}
@@ -122,7 +122,7 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100">
           <div className="px-4 py-4 space-y-2">
-            {navItems.map((item) => (
+            {navItems.map((item) =>
               item.path === "/book-appointment" ? (
                 // Replaced Link with tel anchor for Book Appointment in mobile menu
                 <a
@@ -146,8 +146,8 @@ export default function Navigation() {
                 >
                   {item.name}
                 </Link>
-              )
-            ))}
+              ),
+            )}
             <div className="pt-2">
               {/* Replaced navigation to form with direct call link */}
               {/* <Link to="/book-appointment" onClick={() => setIsMenuOpen(false)}> ... </Link> */}
