@@ -84,11 +84,13 @@ export default function Navigation() {
 
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
-            <Link to="/book-appointment">
+            {/* Replaced navigation to form with direct call link */}
+            {/* <Link to="/book-appointment"> ... </Link> */}
+            <a href="tel:+917303034849">
               <Button className="bg-medical-primary hover:bg-medical-secondary text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                 Book Appointment
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -124,11 +126,13 @@ export default function Navigation() {
               </Link>
             ))}
             <div className="pt-2">
-              <Link to="/book-appointment" onClick={() => setIsMenuOpen(false)}>
+              {/* Replaced navigation to form with direct call link */}
+              {/* <Link to="/book-appointment" onClick={() => setIsMenuOpen(false)}> ... </Link> */}
+              <a href="tel:+917303034849" onClick={() => setIsMenuOpen(false)}>
                 <Button className="w-full bg-medical-primary hover:bg-medical-secondary text-white py-2 rounded-lg font-medium">
                   Book Appointment
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ const WhatsAppForm: React.FC = () => {
   const [note, setNote] = useState<string>('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
+  /* Disabled: original submission logic
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
@@ -45,9 +46,13 @@ const WhatsAppForm: React.FC = () => {
       setStatus('error');
     }
   };
+  */
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="whatsapp-form">
+    <form /* onSubmit={handleSubmit} */ onSubmit={(e) => e.preventDefault()} className="whatsapp-form">
       <input
         type="text"
         value={name}
@@ -89,9 +94,15 @@ const WhatsAppForm: React.FC = () => {
         placeholder="Additional Note (Optional)"
       ></textarea>
 
-      <button type="submit" disabled={status === 'sending'}>
+      {/* Disabled submit in favor of direct call */}
+      {/* <button type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending...' : 'Book Appointment'}
-      </button>
+      </button> */}
+      <a href="tel:+917303034849">
+        <button type="button">
+          Call +91 7303034849
+        </button>
+      </a>
 
       {status === 'success' && <p>✅ Appointment sent via WhatsApp!</p>}
       {status === 'error' && <p>❌ Failed to send appointment. Please try again.</p>}

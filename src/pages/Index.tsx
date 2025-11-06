@@ -113,7 +113,9 @@ export default function Index() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/book-appointment">
+                {/* Replaced navigation to form with direct call link */}
+                {/* <Link to="/book-appointment"> ... </Link> */}
+                <a href="tel:+917303034849">
                   <Button
                     size="lg"
                     className="bg-medical-primary hover:bg-medical-secondary text-white px-8 py-3 text-lg font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
@@ -121,7 +123,7 @@ export default function Index() {
                     Book Your Appointment
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
-                </Link>
+                </a>
                 <a href="tel:+91-7303034849">
                   <Button
                     variant="outline"
@@ -345,15 +347,17 @@ export default function Index() {
             today and experience our professional, caring service.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/book-appointment">
+            {/* Replaced navigation to form with direct call link */}
+            {/* <Link to="/book-appointment"> ... </Link> */}
+            <a href="tel:+917303034849">
               <Button
                 size="lg"
-                className="bg-white text-medical-primary hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-lg shadow-lg"
+                className="bg-white text-medical-primary hover:bg-gray-100 px-8 py-3 text-lg font-medium rounded-lg shadowLg"
               >
                 Book Appointment Now
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-            </Link>
+            </a>
             <a href="tel:+91-7303034849">
               <Button
                 size="lg"

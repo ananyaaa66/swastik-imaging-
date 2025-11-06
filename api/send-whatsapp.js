@@ -1,4 +1,4 @@
-import Twilio from "twilio";
+// import Twilio from "twilio"; // Disabled per request
 
 export default async function handler(req, res) {
   const corsOrigin = process.env.CORS_ORIGIN || "*";
@@ -20,22 +20,7 @@ export default async function handler(req, res) {
   const from = process.env.TWILIO_WHATSAPP_FROM || "whatsapp:+14155238886";
   const to = process.env.CLINIC_WHATSAPP_TO || "whatsapp:+917303034849";
 
-  const missing = [
-    !accountSid && "TWILIO_ACCOUNT_SID",
-    !authToken && "TWILIO_AUTH_TOKEN",
-  ].filter(Boolean);
-  if (missing.length) {
-    res
-      .status(500)
-      .json({ error: `Missing environment variables: ${missing.join(", ")}` });
-    return;
-  }
-  if (!from.startsWith("whatsapp:") || !to.startsWith("whatsapp:")) {
-    res.status(400).json({
-      error: "Numbers must be in 'whatsapp:+<countrycode><number>' format.",
-    });
-    return;
-  }
+  // Disabled Twilio environment and format checks per request
 
   let body = req.body;
   if (typeof body === "string") {
@@ -63,15 +48,8 @@ export default async function handler(req, res) {
 
   const messageText = `New Appointment Booking\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email || "N/A"}\nDate: ${date}\nTime: ${time}\nTests: ${tests.join(", ")}\nAdditional Note: ${additionalInfo || "N/A"}`;
 
-  try {
-    const client = new Twilio(accountSid, authToken);
-    await client.messages.create({ from, to, body: messageText });
-    res.status(200).json({ ok: true });
-  } catch (err) {
-    console.error("Twilio error", err?.message);
-    res.status(500).json({
-      error:
-        "Failed to send WhatsApp message. Check Twilio credentials and number approval.",
-    });
-  }
+  // Disabled Twilio WhatsApp send per request
+  // const client = new Twilio(accountSid, authToken);
+  // await client.messages.create({ from, to, body: messageText });
+  res.status(200).json({ ok: true, disabled: true, message: "WhatsApp sending disabled" });
 }

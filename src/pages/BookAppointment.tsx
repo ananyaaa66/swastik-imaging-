@@ -127,6 +127,7 @@ export default function BookAppointment() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  /* Disabled: original submission logic
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -169,6 +170,10 @@ export default function BookAppointment() {
           "Could not send appointment notification. Please try again.",
       );
     }
+  };
+  */
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
   };
 
   return (
