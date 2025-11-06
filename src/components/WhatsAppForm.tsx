@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const WhatsAppForm: React.FC = () => {
-  const [name, setName] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [testType, setTestType] = useState<string>('');
-  const [slotTime, setSlotTime] = useState<string>('');
-  const [note, setNote] = useState<string>('');
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [name, setName] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [testType, setTestType] = useState<string>("");
+  const [slotTime, setSlotTime] = useState<string>("");
+  const [note, setNote] = useState<string>("");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   /* Disabled: original submission logic
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,7 +54,10 @@ const WhatsAppForm: React.FC = () => {
   };
 
   return (
-    <form /* onSubmit={handleSubmit} */ onSubmit={(e) => e.preventDefault()} className="whatsapp-form">
+    <form
+      /* onSubmit={handleSubmit} */ onSubmit={(e) => e.preventDefault()}
+      className="whatsapp-form"
+    >
       <input
         type="text"
         value={name}
@@ -99,13 +104,13 @@ const WhatsAppForm: React.FC = () => {
         {status === 'sending' ? 'Sending...' : 'Book Appointment'}
       </button> */}
       <a href="tel:+917303034849">
-        <button type="button">
-          Call +91 7303034849
-        </button>
+        <button type="button">Call +91 7303034849</button>
       </a>
 
-      {status === 'success' && <p>✅ Appointment sent via WhatsApp!</p>}
-      {status === 'error' && <p>❌ Failed to send appointment. Please try again.</p>}
+      {status === "success" && <p>✅ Appointment sent via WhatsApp!</p>}
+      {status === "error" && (
+        <p>❌ Failed to send appointment. Please try again.</p>
+      )}
     </form>
   );
 };

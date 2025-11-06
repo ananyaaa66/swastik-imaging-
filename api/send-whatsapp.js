@@ -51,5 +51,7 @@ export default async function handler(req, res) {
   // Disabled Twilio WhatsApp send per request
   // const client = new Twilio(accountSid, authToken);
   // await client.messages.create({ from, to, body: messageText });
-  res.status(200).json({ ok: true, disabled: true, message: "WhatsApp sending disabled" });
+  res
+    .status(200)
+    .json({ ok: true, disabled: true, message: "WhatsApp sending disabled" });
 }
