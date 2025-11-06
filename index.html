@@ -6,6 +6,8 @@
     <title>Swastik Imaging</title>
 
     <!-- Set Swastik logo as favicon and touch icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link
       rel="icon"
       type="image/png"
@@ -30,7 +32,22 @@
         "@type": "Organization",
         "name": "Swastik Imaging & Diagnostics",
         "url": "https://swastikmedscan.com",
-        "logo": "https://cdn.builder.io/api/v1/assets/fb56e24d07534bf98f10782753fb5534/swastik-logo-2-f1bb8b?format=png&width=512"
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://cdn.builder.io/api/v1/assets/fb56e24d07534bf98f10782753fb5534/swastik-logo-2-f1bb8b?format=png&width=512",
+          "width": 512,
+          "height": 512
+        }
+      }
+    </script>
+
+    <!-- Website entity for sitename/branding -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Swastik Imaging & Diagnostics",
+        "url": "https://swastikmedscan.com"
       }
     </script>
   </head>
