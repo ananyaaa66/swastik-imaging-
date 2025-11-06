@@ -93,6 +93,8 @@ export default function Footer() {
               >
                 Services
               </Link>
+              {/* Replaced Book Appointment Link with tel link per request */}
+              {/*
               <Link
                 to="/book-appointment"
                 onClick={handleLinkClick}
@@ -100,6 +102,13 @@ export default function Footer() {
               >
                 Book Appointment
               </Link>
+              */}
+              <a
+                href="tel:+917303034849"
+                className="block text-gray-600 hover:text-medical-primary transition-colors duration-200"
+              >
+                Book Appointment
+              </a>
             </div>
           </div>
         </div>
