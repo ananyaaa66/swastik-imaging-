@@ -27,11 +27,25 @@ appointments_collection = db["appointments"]
 
 app = FastAPI(title="Swastik Imaging - Appointment API")
 
+# CORS — restrict to known production + preview origins.
+# Override via env var ALLOWED_ORIGINS (comma-separated) if you add more domains later.
+_default_origins = [
+    "https://swastikmedscan.com",
+    "https://www.swastikmedscan.com",
+    "https://1f758b4a-7d9e-4a01-8b70-9b9d18884fe2.preview.emergentagent.com",
+]
+_env_origins = os.environ.get("ALLOWED_ORIGINS", "")
+ALLOWED_ORIGINS = (
+    [o.strip() for o in _env_origins.split(",") if o.strip()]
+    if _env_origins
+    else _default_origins
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
