@@ -3,9 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "dev:frontend": "vite",
-    "dev:backend": "node --loader tsx ./server.ts",
+    "start": "vite",
+    "dev": "vite",
     "build": "vite build",
     "test": "vitest --run",
     "format.fix": "prettier --write .",

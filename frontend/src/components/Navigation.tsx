@@ -67,41 +67,29 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) =>
-              item.path === "/book-appointment" ? (
-                // Replaced Link with tel anchor for Book Appointment in navbar
-                <a
-                  key={item.path}
-                  href="tel:+917303034849"
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md text-gray-700 hover:text-medical-primary hover:bg-gray-50`}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
-                    isActivePath(item.path)
-                      ? "text-medical-primary bg-medical-light"
-                      : "text-gray-700 hover:text-medical-primary hover:bg-gray-50"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ),
-            )}
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
+                  isActivePath(item.path)
+                    ? "text-medical-primary bg-medical-light"
+                    : "text-gray-700 hover:text-medical-primary hover:bg-gray-50"
+                }`}
+                data-testid={`nav-link-${item.path.replace(/\//g, "") || "home"}`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
 
           {/* CTA Button - Desktop */}
           <div className="hidden md:block">
-            {/* Replaced navigation to form with direct call link */}
-            {/* <Link to="/book-appointment"> ... </Link> */}
-            <a href="tel:+917303034849">
+            <Link to="/book-appointment" data-testid="nav-book-appointment-btn">
               <Button className="bg-medical-primary hover:bg-medical-secondary text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                 Book Appointment
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -122,40 +110,31 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100">
           <div className="px-4 py-4 space-y-2">
-            {navItems.map((item) =>
-              item.path === "/book-appointment" ? (
-                // Replaced Link with tel anchor for Book Appointment in mobile menu
-                <a
-                  key={item.path}
-                  href="tel:+917303034849"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 text-gray-700 hover:text-medical-primary hover:bg-gray-50`}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${
-                    isActivePath(item.path)
-                      ? "text-medical-primary bg-medical-light"
-                      : "text-gray-700 hover:text-medical-primary hover:bg-gray-50"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-              ),
-            )}
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200 ${
+                  isActivePath(item.path)
+                    ? "text-medical-primary bg-medical-light"
+                    : "text-gray-700 hover:text-medical-primary hover:bg-gray-50"
+                }`}
+                data-testid={`mobile-nav-link-${item.path.replace(/\//g, "") || "home"}`}
+              >
+                {item.name}
+              </Link>
+            ))}
             <div className="pt-2">
-              {/* Replaced navigation to form with direct call link */}
-              {/* <Link to="/book-appointment" onClick={() => setIsMenuOpen(false)}> ... </Link> */}
-              <a href="tel:+917303034849" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                to="/book-appointment"
+                onClick={() => setIsMenuOpen(false)}
+                data-testid="mobile-nav-book-appointment-btn"
+              >
                 <Button className="w-full bg-medical-primary hover:bg-medical-secondary text-white py-2 rounded-lg font-medium">
                   Book Appointment
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
