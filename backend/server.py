@@ -32,7 +32,6 @@ app = FastAPI(title="Swastik Imaging - Appointment API")
 _default_origins = [
     "https://swastikmedscan.com",
     "https://www.swastikmedscan.com",
-    "https://1f758b4a-7d9e-4a01-8b70-9b9d18884fe2.preview.emergentagent.com",
 ]
 _env_origins = os.environ.get("ALLOWED_ORIGINS", "")
 ALLOWED_ORIGINS = (
