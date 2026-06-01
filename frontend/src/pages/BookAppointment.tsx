@@ -182,7 +182,7 @@ export default function BookAppointment() {
     setErrorMessage("");
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
+      const backendUrl = import.meta.env.VITE_API_URL || "";
       const response = await fetch(`${backendUrl}/api/appointment`, {
         method: "POST",
         headers: {

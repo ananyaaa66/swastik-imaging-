@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, MapPin } from "lucide-react";
+import { Menu, X, Phone, MapPin, ShieldCheck } from "lucide-react";
 
 const MedicalCrossLogo = () => (
   <div className="flex items-center space-x-3">
@@ -83,8 +83,16 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
+          {/* CTA Buttons - Desktop */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Link
+              to="/admin/login"
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-600 hover:text-medical-primary transition-colors duration-200 rounded-md hover:bg-gray-50"
+              data-testid="nav-admin-link"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              Admin
+            </Link>
             <Link to="/book-appointment" data-testid="nav-book-appointment-btn">
               <Button className="bg-medical-primary hover:bg-medical-secondary text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200">
                 Book Appointment
@@ -125,6 +133,15 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
+            <Link
+              to="/admin/login"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center gap-2 px-3 py-2 text-base font-medium text-gray-600 hover:text-medical-primary hover:bg-gray-50 rounded-md transition-colors duration-200"
+              data-testid="mobile-nav-admin-link"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              Admin Panel
+            </Link>
             <div className="pt-2">
               <Link
                 to="/book-appointment"

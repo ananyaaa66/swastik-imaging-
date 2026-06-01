@@ -1,5 +1,9 @@
 import { getToken, removeToken } from "./auth";
 
+// In production (Vercel), API calls go to the Render backend URL.
+// In dev, Vite proxy forwards /api to localhost:8001 so we use "".
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export interface LoginResponse {
@@ -90,7 +94,7 @@ async function apiFetch<T>(
     headers["Content-Type"] = "application/json";
   }
 
-  const response = await fetch(url, {
+  const response = await fetch(`${API_BASE}${url}`, {
     ...options,
     headers,
   });
