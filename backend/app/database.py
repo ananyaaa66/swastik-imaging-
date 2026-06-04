@@ -78,16 +78,32 @@ async def connect_db() -> None:
 
     try:
         import certifi
+        import ssl
 
-        _instance.client = AsyncIOMotorClient(
-            mongo_url,
-            serverSelectionTimeoutMS=10000,  # 10s timeout
-            tlsCAFile=certifi.where(),       # Fix SSL on Render/Heroku
-        )
+        # Try connecting with certifi CA bundle first; if the OpenSSL
+        # version on this platform is too old (e.g. Python 3.11.0 on
+        # Render), fall back to disabling certificate verification.
+        try:
+            _instance.client = AsyncIOMotorClient(
+                mongo_url,
+                serverSelectionTimeoutMS=10000,
+                tlsCAFile=certifi.where(),
+            )
+            await _instance.client.admin.command("ping")
+        except Exception:
+            logger.warning(
+                "certifi CA connection failed, retrying with "
+                "tlsAllowInvalidCertificates=True"
+            )
+            _instance.client = AsyncIOMotorClient(
+                mongo_url,
+                serverSelectionTimeoutMS=10000,
+                tls=True,
+                tlsAllowInvalidCertificates=True,
+            )
+            await _instance.client.admin.command("ping")
+
         _instance.db = _instance.client[db_name]
-
-        # Verify the connection is alive
-        await _instance.client.admin.command("ping")
         logger.info("Connected to MongoDB (%s)", db_name)
 
         # Create indexes for performance & uniqueness
