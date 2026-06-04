@@ -77,9 +77,12 @@ async def connect_db() -> None:
         return
 
     try:
+        import certifi
+
         _instance.client = AsyncIOMotorClient(
             mongo_url,
             serverSelectionTimeoutMS=10000,  # 10s timeout
+            tlsCAFile=certifi.where(),       # Fix SSL on Render/Heroku
         )
         _instance.db = _instance.client[db_name]
 
