@@ -9,7 +9,9 @@ Run with:
 
 from __future__ import annotations
 
+import logging
 import os
+from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -23,12 +25,34 @@ from app.routes.campaigns import router as campaign_router
 
 load_dotenv()
 
+logger = logging.getLogger("app.main")
+
+
+# ── Lifecycle ─────────────────────────────────────────────────────────────
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Modern lifespan handler — replaces deprecated on_event."""
+    # Startup
+    try:
+        await connect_db()
+        logger.info("Application startup complete.")
+    except Exception as exc:
+        logger.error("Startup error (non-fatal): %s", exc)
+    yield
+    # Shutdown
+    await close_db()
+    logger.info("Application shutdown complete.")
+
+
 # ── App ───────────────────────────────────────────────────────────────────
 
 app = FastAPI(
     title="Swastik Imaging & Diagnostics – API",
     description="Appointment booking, contact management, and campaign APIs.",
     version="2.0.0",
+    lifespan=lifespan,
 )
 
 # ── CORS ──────────────────────────────────────────────────────────────────
@@ -56,19 +80,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Lifecycle ─────────────────────────────────────────────────────────────
-
-
-@app.on_event("startup")
-async def startup():
-    await connect_db()
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    await close_db()
-
-
 # ── Routers ───────────────────────────────────────────────────────────────
 
 app.include_router(admin_router)
@@ -83,3 +94,4 @@ app.include_router(campaign_router)
 @app.get("/api/health")
 async def health():
     return {"status": "ok"}
+

@@ -62,18 +62,42 @@ async def connect_db() -> None:
     Reads ``MONGO_URL`` and ``DB_NAME`` from environment variables (they
     must already be loaded, e.g. via ``python-dotenv``).
     """
-    mongo_url = os.environ["MONGO_URL"]
-    db_name = os.environ["DB_NAME"]
+    import logging
 
-    _instance.client = AsyncIOMotorClient(mongo_url)
-    _instance.db = _instance.client[db_name]
+    logger = logging.getLogger("app.database")
 
-    # Create indexes for performance & uniqueness
-    await _instance.contacts.create_index("phone", unique=True)
-    await _instance.admin_users.create_index("username", unique=True)
-    await _instance.appointments.create_index("createdAt")
-    await _instance.contacts.create_index("createdAt")
-    await _instance.campaigns.create_index("createdAt")
+    mongo_url = os.environ.get("MONGO_URL", "")
+    db_name = os.environ.get("DB_NAME", "swastik_imaging")
+
+    if not mongo_url:
+        logger.warning(
+            "MONGO_URL is not set. The app will start but database "
+            "operations will fail until the variable is configured."
+        )
+        return
+
+    try:
+        _instance.client = AsyncIOMotorClient(
+            mongo_url,
+            serverSelectionTimeoutMS=10000,  # 10s timeout
+        )
+        _instance.db = _instance.client[db_name]
+
+        # Verify the connection is alive
+        await _instance.client.admin.command("ping")
+        logger.info("Connected to MongoDB (%s)", db_name)
+
+        # Create indexes for performance & uniqueness
+        await _instance.contacts.create_index("phone", unique=True)
+        await _instance.admin_users.create_index("username", unique=True)
+        await _instance.appointments.create_index("createdAt")
+        await _instance.contacts.create_index("createdAt")
+        await _instance.campaigns.create_index("createdAt")
+        logger.info("Database indexes ensured.")
+    except Exception as exc:
+        logger.error("Failed to connect to MongoDB: %s", exc)
+        _instance.client = None
+        _instance.db = None
 
 
 async def close_db() -> None:
@@ -87,5 +111,8 @@ async def close_db() -> None:
 def get_db() -> _Database:
     """Return the database singleton.  Must call ``connect_db()`` first."""
     if _instance.db is None:
-        raise RuntimeError("Database not initialised – call connect_db() first")
+        raise RuntimeError(
+            "Database not initialised. Check that MONGO_URL is set "
+            "and that the MongoDB server is reachable."
+        )
     return _instance
