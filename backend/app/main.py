@@ -95,3 +95,20 @@ app.include_router(campaign_router)
 async def health():
     return {"status": "ok"}
 
+
+@app.get("/api/debug")
+async def debug_info():
+    """Temporary debug endpoint — remove after deployment is verified."""
+    import sys
+    import ssl
+
+    from app.database import _instance
+
+    return {
+        "python_version": sys.version,
+        "openssl_version": ssl.OPENSSL_VERSION,
+        "db_connected": _instance.db is not None,
+        "mongo_url_set": bool(os.environ.get("MONGO_URL")),
+        "db_name": os.environ.get("DB_NAME", "NOT SET"),
+        "allowed_origins": ALLOWED_ORIGINS,
+    }
