@@ -140,6 +140,7 @@ async def upload_contacts(
 
     raw = await file.read()
     rows: list[dict] = []
+    header_row_idx = 1
 
     if ext == "csv":
         text = raw.decode("utf-8-sig", errors="replace")
@@ -158,14 +159,24 @@ async def upload_contacts(
             raise HTTPException(status_code=400, detail="Excel file has no sheets")
 
         header_row = None
-        for row in ws.iter_rows(min_row=1, max_row=1, values_only=True):
-            header_row = [str(c or "").strip().lower() for c in row]
-            break
+        # Scan first 15 rows to find the headers row (contains Name or Phone equivalents)
+        for r_idx, row in enumerate(ws.iter_rows(min_row=1, max_row=15, values_only=True), start=1):
+            row_str = [str(c or "").strip().lower() for c in row]
+            has_name = any(k in row_str for k in ["name", "patient name", "full name", "patientname", "patient_name"])
+            has_phone = any(k in row_str for k in ["phone", "phone number", "mobile", "mobile no", "phonenumber", "phone_number", "contact", "mobile number", "phone no", "patient contact number"])
+            if has_name or has_phone:
+                header_row = row_str
+                header_row_idx = r_idx
+                break
 
         if not header_row:
-            raise HTTPException(status_code=400, detail="Excel file has no header row")
+            # Fallback to row 1
+            for row in ws.iter_rows(min_row=1, max_row=1, values_only=True):
+                header_row = [str(c or "").strip().lower() for c in row]
+                header_row_idx = 1
+                break
 
-        for row in ws.iter_rows(min_row=2, values_only=True):
+        for row in ws.iter_rows(min_row=header_row_idx + 1, values_only=True):
             record = {}
             for i, val in enumerate(row):
                 if i < len(header_row):
@@ -176,7 +187,7 @@ async def upload_contacts(
 
     # Column name mapping
     name_keys = ["name", "patient name", "full name", "patientname", "patient_name"]
-    phone_keys = ["phone", "phone number", "mobile", "phonenumber", "phone_number", "contact", "mobile number"]
+    phone_keys = ["phone", "phone number", "mobile", "phonenumber", "phone_number", "contact", "mobile number", "mobile no", "phone no", "patient contact number"]
     email_keys = ["email", "email address", "e-mail", "emailaddress"]
 
     def _find(row: dict, keys: list[str]) -> str:
@@ -192,10 +203,14 @@ async def upload_contacts(
     skipped = 0
     errors: list[dict] = []
 
-    for idx, row in enumerate(rows, start=2):  # start=2 because row 1 is header
+    for idx, row in enumerate(rows, start=header_row_idx + 1):  # start matches the actual row index
         name = _find(row, name_keys)
         phone_raw = _find(row, phone_keys)
         email = _find(row, email_keys)
+
+        # Skip date rows, section headers, or empty rows
+        if not name and not phone_raw:
+            continue
 
         phone = _clean_phone(phone_raw)
 
