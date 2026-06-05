@@ -29,7 +29,7 @@ import {
   Clock,
 } from "lucide-react";
 import { toast } from "sonner";
-import { getCampaigns, createCampaign, getContacts } from "@/lib/api";
+import { getCampaigns, createCampaign, getContacts, getContactCount } from "@/lib/api";
 
 export default function AdminCampaigns() {
   const [campaigns, setCampaigns] = useState<any[]>([]);
@@ -44,6 +44,7 @@ export default function AdminCampaigns() {
   const [loadingContacts, setLoadingContacts] = useState(false);
   const [sending, setSending] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [totalContactsCount, setTotalContactsCount] = useState<number | null>(null);
 
   const fetchCampaigns = useCallback(async () => {
     setLoading(true);
@@ -57,9 +58,19 @@ export default function AdminCampaigns() {
     }
   }, []);
 
+  const fetchTotalContactsCount = useCallback(async () => {
+    try {
+      const { total } = await getContactCount();
+      setTotalContactsCount(total);
+    } catch (err) {
+      console.error("Failed to fetch total contact count:", err);
+    }
+  }, []);
+
   useEffect(() => {
     fetchCampaigns();
-  }, [fetchCampaigns]);
+    fetchTotalContactsCount();
+  }, [fetchCampaigns, fetchTotalContactsCount]);
 
   const loadContacts = async () => {
     if (contacts.length > 0) return;
@@ -94,7 +105,7 @@ export default function AdminCampaigns() {
     }
   };
 
-  const recipientCount = sendToAll ? contacts.length || "All" : selectedIds.length;
+  const recipientCount = sendToAll ? totalContactsCount ?? "All" : selectedIds.length;
 
   const handleSend = async () => {
     setConfirmOpen(false);
@@ -111,6 +122,8 @@ export default function AdminCampaigns() {
       setSelectedIds([]);
       setSendToAll(true);
       fetchCampaigns();
+      fetchTotalContactsCount();
+
     } catch (err: any) {
       toast.error(err?.message || "Failed to send campaign");
     } finally {
@@ -288,7 +301,7 @@ export default function AdminCampaigns() {
 
                   <div className="text-sm text-gray-500">
                     <span className="font-medium">Recipients: </span>
-                    {sendToAll ? "All contacts" : `${selectedIds.length} selected`}
+                    {sendToAll ? `All contacts (${totalContactsCount ?? "..."})` : `${selectedIds.length} selected`}
                   </div>
 
                   <Button
@@ -383,7 +396,7 @@ export default function AdminCampaigns() {
             <AlertDialogTitle>Send Campaign?</AlertDialogTitle>
             <AlertDialogDescription>
               This will send a WhatsApp message to{" "}
-              <strong>{sendToAll ? "all contacts" : `${selectedIds.length} selected contacts`}</strong>.
+              <strong>{sendToAll ? `all contacts (${totalContactsCount ?? "..."})` : `${selectedIds.length} selected contacts`}</strong>.
               This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
