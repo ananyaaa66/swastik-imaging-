@@ -48,10 +48,14 @@ def _serialize(doc: dict) -> dict:
 
 def _clean_phone(raw: str) -> str:
     """Extract last 10 digits from a phone string."""
-    digits = re.sub(r"\D", "", str(raw).strip())
+    val = str(raw).strip()
+    if val.endswith(".0"):
+        val = val[:-2]
+    digits = re.sub(r"\D", "", val)
     if len(digits) >= 10:
         return digits[-10:]
     return digits
+
 
 
 # ── Routes ────────────────────────────────────────────────────────────────
@@ -223,14 +227,13 @@ async def upload_contacts(
         except Exception as exc:
             errors.append({"row": idx, "error": str(exc)})
 
-    failed = len(errors)
     return {
         "total": total,
         "imported": imported,
         "skipped": skipped,
-        "failed": failed,
-        "errors": errors[:50],  # Cap error details at 50
+        "failed": errors[:50],  # Return array of errors to match frontend UploadResult interface
     }
+
 
 
 @router.delete("/{contact_id}", status_code=204)
