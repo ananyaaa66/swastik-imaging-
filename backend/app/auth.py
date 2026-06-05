@@ -192,3 +192,19 @@ async def login_admin(body: AdminLoginRequest):
 async def verify_token(admin: dict = Depends(get_current_admin)):
     """Validate the current token — returns the admin profile on success."""
     return {"valid": True, "admin": admin}
+
+
+# ── Temporary: Reset admin users for troubleshooting ─────────────────
+@router.get("/danger-reset-admins")
+async def danger_reset_admins():
+    db = get_db()
+    admins = await db.admin_users.find({}).to_list(length=100)
+    admin_list = [{"id": str(a["_id"]), "username": a.get("username")} for a in admins]
+    
+    delete_result = await db.admin_users.delete_many({})
+    return {
+        "status": "cleared",
+        "deleted_count": delete_result.deleted_count,
+        "previous_admins": admin_list
+    }
+
