@@ -85,11 +85,13 @@ _default_origins = [
 ]
 
 _env_origins = os.environ.get("ALLOWED_ORIGINS", "")
-ALLOWED_ORIGINS = (
-    [o.strip() for o in _env_origins.split(",") if o.strip()]
-    if _env_origins
-    else _default_origins
-)
+_env_list = [o.strip() for o in _env_origins.split(",") if o.strip()] if _env_origins else []
+# Merge defaults and env-specified origins, preserving order/uniqueness
+ALLOWED_ORIGINS = []
+for origin in (_default_origins + _env_list):
+    if origin not in ALLOWED_ORIGINS:
+        ALLOWED_ORIGINS.append(origin)
+
 
 app.add_middleware(
     CORSMiddleware,
