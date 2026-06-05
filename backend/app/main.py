@@ -55,6 +55,26 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+# ── Temporary: detailed error responses for debugging ─────────────────
+import traceback
+from fastapi.responses import JSONResponse
+from starlette.requests import Request
+
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Return detailed error info instead of generic 500."""
+    logger.error("Unhandled exception: %s", traceback.format_exc())
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": str(exc),
+            "type": type(exc).__name__,
+            "traceback": traceback.format_exc().split("\n")[-4:],
+        },
+    )
+
 # ── CORS ──────────────────────────────────────────────────────────────────
 
 _default_origins = [
