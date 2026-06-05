@@ -27,6 +27,7 @@ import {
   Loader2,
   MessageSquare,
   Clock,
+  Search,
 } from "lucide-react";
 import { toast } from "sonner";
 import { getCampaigns, createCampaign, getContacts, getContactCount } from "@/lib/api";
@@ -41,6 +42,7 @@ export default function AdminCampaigns() {
   const [sendToAll, setSendToAll] = useState(true);
   const [contacts, setContacts] = useState<any[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [contactSearch, setContactSearch] = useState("");
   const [loadingContacts, setLoadingContacts] = useState(false);
   const [sending, setSending] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -72,24 +74,26 @@ export default function AdminCampaigns() {
     fetchTotalContactsCount();
   }, [fetchCampaigns, fetchTotalContactsCount]);
 
-  const loadContacts = async () => {
-    if (contacts.length > 0) return;
+  const loadContacts = useCallback(async (search?: string) => {
     setLoadingContacts(true);
     try {
-      const data = await getContacts();
+      const data = await getContacts(search);
       setContacts(data);
     } catch (err) {
       toast.error("Failed to load contacts");
     } finally {
       setLoadingContacts(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (!sendToAll) {
-      loadContacts();
+      const timer = setTimeout(() => {
+        loadContacts(contactSearch || undefined);
+      }, 400);
+      return () => clearTimeout(timer);
     }
-  }, [sendToAll]);
+  }, [contactSearch, sendToAll, loadContacts]);
 
   const toggleContact = (id: string) => {
     setSelectedIds((prev) =>
@@ -98,10 +102,19 @@ export default function AdminCampaigns() {
   };
 
   const selectAllContacts = () => {
-    if (selectedIds.length === contacts.length) {
-      setSelectedIds([]);
+    const currentIds = contacts.map((c) => c.id);
+    const allSelected = currentIds.every((id) => selectedIds.includes(id));
+    
+    if (allSelected) {
+      setSelectedIds((prev) => prev.filter((id) => !currentIds.includes(id)));
     } else {
-      setSelectedIds(contacts.map((c) => c.id));
+      setSelectedIds((prev) => {
+        const next = [...prev];
+        currentIds.forEach((id) => {
+          if (!next.includes(id)) next.push(id);
+        });
+        return next;
+      });
     }
   };
 
@@ -226,50 +239,62 @@ export default function AdminCampaigns() {
                     </div>
 
                     {!sendToAll && (
-                      <div className="border rounded-lg max-h-[300px] overflow-y-auto">
-                        {loadingContacts ? (
-                          <div className="p-6 space-y-2">
-                            {[...Array(3)].map((_, i) => (
-                              <Skeleton key={i} className="h-8 w-full" />
-                            ))}
-                          </div>
-                        ) : contacts.length === 0 ? (
-                          <div className="p-6 text-center text-gray-500 text-sm">
-                            No contacts available. Upload contacts first.
-                          </div>
-                        ) : (
-                          <>
-                            <div className="p-2 border-b bg-gray-50/50 flex items-center justify-between">
-                              <label className="flex items-center gap-2 cursor-pointer text-sm px-2">
-                                <Checkbox
-                                  checked={selectedIds.length === contacts.length && contacts.length > 0}
-                                  onCheckedChange={selectAllContacts}
-                                />
-                                Select All ({contacts.length})
-                              </label>
-                              <Badge variant="secondary" className="text-xs">
-                                {selectedIds.length} selected
-                              </Badge>
+                      <div className="space-y-3">
+                        <div className="relative">
+                          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                          <Input
+                            placeholder="Search contacts by name or phone..."
+                            className="pl-10 h-9 text-sm"
+                            value={contactSearch}
+                            onChange={(e) => setContactSearch(e.target.value)}
+                          />
+                        </div>
+
+                        <div className="border rounded-lg max-h-[250px] overflow-y-auto bg-white">
+                          {loadingContacts ? (
+                            <div className="p-6 space-y-2">
+                              {[...Array(3)].map((_, i) => (
+                                <Skeleton key={i} className="h-8 w-full" />
+                              ))}
                             </div>
-                            {contacts.map((contact: any) => (
-                              <label
-                                key={contact.id}
-                                className="flex items-center gap-3 px-4 py-2 border-b border-gray-50 hover:bg-gray-50/80 cursor-pointer transition-colors"
-                              >
-                                <Checkbox
-                                  checked={selectedIds.includes(contact.id)}
-                                  onCheckedChange={() => toggleContact(contact.id)}
-                                />
-                                <div className="flex-1 min-w-0">
-                                  <p className="text-sm font-medium text-gray-900 truncate">
-                                    {contact.patientName || contact.name || "—"}
-                                  </p>
-                                  <p className="text-xs text-gray-400">{contact.phone}</p>
-                                </div>
-                              </label>
-                            ))}
-                          </>
-                        )}
+                          ) : contacts.length === 0 ? (
+                            <div className="p-6 text-center text-gray-500 text-sm">
+                              {contactSearch ? "No matching contacts found" : "No contacts available. Upload contacts first."}
+                            </div>
+                          ) : (
+                            <>
+                              <div className="p-2 border-b bg-gray-50/50 flex items-center justify-between sticky top-0 z-10 bg-gray-50">
+                                <label className="flex items-center gap-2 cursor-pointer text-sm px-2">
+                                  <Checkbox
+                                    checked={contacts.length > 0 && contacts.every((c) => selectedIds.includes(c.id))}
+                                    onCheckedChange={selectAllContacts}
+                                  />
+                                  Select All Current ({contacts.length})
+                                </label>
+                                <Badge variant="secondary" className="text-xs">
+                                  {selectedIds.length} selected
+                                </Badge>
+                              </div>
+                              {contacts.map((contact: any) => (
+                                <label
+                                  key={contact.id}
+                                  className="flex items-center gap-3 px-4 py-2 border-b border-gray-50 hover:bg-gray-50/80 cursor-pointer transition-colors"
+                                >
+                                  <Checkbox
+                                    checked={selectedIds.includes(contact.id)}
+                                    onCheckedChange={() => toggleContact(contact.id)}
+                                  />
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-gray-900 truncate">
+                                      {contact.patientName || contact.name || "—"}
+                                    </p>
+                                    <p className="text-xs text-gray-400">{contact.phone}</p>
+                                  </div>
+                                </label>
+                              ))}
+                            </>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
