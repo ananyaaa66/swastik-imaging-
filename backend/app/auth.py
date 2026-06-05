@@ -243,3 +243,28 @@ async def debug_whatsapp():
     }
 
 
+# ── Temporary: Debug search contact ───────────────────────────────────
+@router.get("/debug-search-contact")
+async def debug_search_contact(q: str):
+    db = get_db()
+    cursor = db.contacts.find({
+        "$or": [
+            {"patientName": {"$regex": q, "$options": "i"}},
+            {"phone": {"$regex": q, "$options": "i"}},
+            {"email": {"$regex": q, "$options": "i"}}
+        ]
+    })
+    results = []
+    async for doc in cursor:
+        results.append({
+            "id": str(doc.get("_id") or doc.get("id")),
+            "patientName": doc.get("patientName") or doc.get("name"),
+            "phone": doc.get("phone"),
+            "email": doc.get("email"),
+            "source": doc.get("source"),
+            "createdAt": doc.get("createdAt")
+        })
+    return results
+
+
+
