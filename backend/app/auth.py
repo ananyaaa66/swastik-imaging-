@@ -208,3 +208,38 @@ async def danger_reset_admins():
         "previous_admins": admin_list
     }
 
+
+# ── Temporary: Debug WhatsApp issues ──────────────────────────────────
+@router.get("/debug-whatsapp")
+async def debug_whatsapp():
+    db = get_db()
+    
+    # Get last 5 appointments
+    appointments = await db.appointments.find({}).sort("createdAt", -1).limit(5).to_list(length=5)
+    app_list = [{
+        "id": a.get("id"),
+        "fullName": a.get("fullName"),
+        "phoneNumber": a.get("phoneNumber"),
+        "whatsappSent": a.get("whatsappSent"),
+        "whatsappError": a.get("whatsappError"),
+        "createdAt": a.get("createdAt")
+    } for a in appointments]
+    
+    # Get last 5 campaigns
+    campaigns = await db.campaigns.find({}).sort("createdAt", -1).limit(5).to_list(length=5)
+    camp_list = [{
+        "id": str(c.get("_id") or c.get("id")),
+        "title": c.get("title"),
+        "successCount": c.get("successCount"),
+        "failureCount": c.get("failureCount"),
+        "createdAt": c.get("createdAt")
+    } for c in campaigns]
+
+    return {
+        "appointments": app_list,
+        "campaigns": camp_list,
+        "twilio_configured": bool(os.environ.get("TWILIO_ACCOUNT_SID") and os.environ.get("TWILIO_AUTH_TOKEN")),
+        "twilio_sid": os.environ.get("TWILIO_ACCOUNT_SID", "")[:10] + "..." if os.environ.get("TWILIO_ACCOUNT_SID") else None,
+    }
+
+
